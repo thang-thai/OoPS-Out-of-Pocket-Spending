@@ -1,0 +1,26 @@
+@import '../../../public/styles.css';
+
+.transactions {
+  max-width: 30rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.transaction-heading {
+  text-align: center;
+  font-size: 2rem;
+}
+
+.btns {
+  display: flex;
+  justify-content: center;
+}
+
+.btn-1 {
+  flex: 1;
+}
+
+.btn-2 {
+  flex: 1;
+}

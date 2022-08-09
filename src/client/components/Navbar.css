@@ -1,0 +1,17 @@
+@import '../../../public/styles.css';
+
+.main-nav {
+  background-color: #0cbaa6;
+  min-width: 100vw;
+  min-height: 10rem;
+  font-size: 2.4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 6rem;
+}
+
+.totals {
+  display: flex;
+  gap: 6rem;
+}
