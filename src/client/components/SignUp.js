@@ -21,10 +21,20 @@ const SignUp = () => {
     navigate(path);
   };
 
+  const resetAllFields = () => {
+    setFirstName('');
+    setLastName('');
+    setUsername('');
+    setPassword('');
+    setConfirmedPassword('');
+  };
+
   const passwordMatch = () => {
     if (password !== confirmedPassword) {
-      setPwMatched(false);
+      return setPwMatched(false);
     }
+    setPwMatched(true);
+    resetAllFields();
   };
 
   const handleSubmit = e => {
@@ -42,6 +52,7 @@ const SignUp = () => {
         <form className="signup-form">
           <input
             className="input-login"
+            value={firstName}
             type="text"
             placeholder="First Name"
             onChange={e => {
@@ -52,6 +63,7 @@ const SignUp = () => {
           ></input>
           <input
             className="input-login"
+            value={lastName}
             type="text"
             placeholder="Last Name"
             onChange={e => {
@@ -62,6 +74,7 @@ const SignUp = () => {
           ></input>
           <input
             className="input-login username"
+            value={username}
             type="text"
             placeholder="Username"
             onChange={e => {
@@ -72,6 +85,7 @@ const SignUp = () => {
           ></input>
           <input
             className="input-login"
+            value={password}
             type="password"
             placeholder="Password"
             onChange={e => {
@@ -82,6 +96,7 @@ const SignUp = () => {
           ></input>
           <input
             className="input-login"
+            value={confirmedPassword}
             type="password"
             placeholder="Confirm Password"
             onChange={e => {

@@ -60,7 +60,7 @@
 }
 
 .pw-failed {
-  color: red;
+  color: #ff6666;
   font-size: 1.4rem;
   position: absolute;
   bottom: 24%;
