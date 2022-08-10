@@ -2,7 +2,65 @@
 
 .expense-heading {
   display: flex;
-  justify-content: space-around;
-  align-items: center;
+  justify-content: center;
+  /* align-items: center; */
   font-size: 1.8rem;
+}
+
+.expenses {
+  display: flex;
+  justify-content: center;
+}
+
+table {
+  width: 100rem;
+  table-layout: fixed;
+}
+
+th {
+  font-size: 2.4rem;
+}
+
+td {
+  text-align: center;
+  font-size: 1.6rem;
+}
+
+.btns {
+  display: flex;
+  gap: 1rem;
+}
+
+.btn-edit,
+.btn-delete {
+  font-size: 1.6rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.4rem;
+  border: none;
+}
+
+.btn-edit {
+  background-color: #0cbaa6;
+  color: #e7f8f6;
+  box-shadow: 0 0.2rem 0.2rem rgb(0, 0, 0, 0.1);
+  transition: all 0.3s;
+}
+
+.btn-delete {
+  color: #0cbaa6;
+  background-color: #e7f8f6;
+  box-shadow: 0 0.2rem 0.2rem rgb(0, 0, 0, 0.1);
+  transition: all 0.3s;
+}
+
+.btn-edit:hover {
+  cursor: pointer;
+  color: #0cbaa6;
+  background-color: #e7f8f6;
+}
+
+.btn-delete:hover {
+  cursor: pointer;
+  background-color: #022521;
+  color: #e7f8f6;
 }
