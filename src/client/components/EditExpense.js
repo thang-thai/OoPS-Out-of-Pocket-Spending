@@ -3,7 +3,7 @@ import axios from 'axios';
 import './EditExpense.css';
 const Transaction = require('../../server/models/transactionModel');
 
-const EditExpense = ({ closeModal, editId }) => {
+const EditExpense = ({ closeModal, editId, expensesList, setExpensesList }) => {
   const [expense, setExpense] = useState('');
   const [amount, setAmount] = useState('');
   const [category, setCategory] = useState('');

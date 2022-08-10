@@ -1,3 +1,11 @@
+/* 
+
+  primary color: #0cbaa6;
+  tints: #e7f8f6;
+  shades: #022521
+}
+*/
+
 * {
   margin: 0;
   padding: 0;
@@ -7,4 +15,5 @@
 html {
   font-size: 62.5%;
   font-family: 'Roboto', sans-serif;
+  background-color: #e7f8f6;
 }

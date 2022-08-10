@@ -23,11 +23,11 @@ const App = () => {
   useEffect(() => {
     axios
       .get('/api/get-expenses')
-      .then(async res => {
-        await setExpensesList(res.data);
+      .then(res => {
+        setExpensesList([...res.data]);
       })
       .catch(err => console.log(err));
-  }, [expensesList]);
+  });
 
   return (
     <div>
@@ -37,18 +37,30 @@ const App = () => {
       <main className="main-container">
         <div className="edit-modal">
           {openModal ? (
-            <EditExpense closeModal={closeModal} editId={editId} />
+            <EditExpense
+              closeModal={closeModal}
+              editId={editId}
+              expensesList={expensesList}
+              setExpensesList={setExpensesList}
+            />
           ) : null}
         </div>
-        <section>
-          <a href="#">Summary</a>
-          <a href="#">All Expenses</a>
+        <section className="routes">
+          <a className="route" href="#">
+            Summary
+          </a>
+          <a className="route" href="#">
+            All Expenses
+          </a>
         </section>
         <section className="expenses">
           <Expenses expensesList={expensesList} handleEdit={handleEdit} />
         </section>
         <section className="add-transaction">
-          <AddTransaction />
+          <AddTransaction
+            expensesList={expensesList}
+            setExpensesList={setExpensesList}
+          />
         </section>
       </main>
     </div>

@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import './AddTransaction.css';
 const Transaction = require('../../server/models/transactionModel');
 
-const AddTransaction = () => {
+const AddTransaction = ({ expensesList, setExpensesList }) => {
   const [expense, setExpense] = useState('');
   const [amount, setAmount] = useState('');
   const [category, setCategory] = useState('');
@@ -15,7 +15,9 @@ const AddTransaction = () => {
     // axios.post('/api/addExpense', { expense, amount, category, date });
     axios
       .post('/api/add-expense', { expense, amount, category, date })
-      .then(res => console.log(res.data));
+      .then(res => {
+        setExpensesList([...expensesList, res.data]);
+      });
 
     // Reset values
     setExpense('');
@@ -28,6 +30,7 @@ const AddTransaction = () => {
     <form className="transactions" onSubmit={handleSubmit}>
       <p className="transaction-heading">New Expense</p>
       <input
+        className="input"
         id="expense"
         type="text"
         placeholder="Expense"
@@ -36,6 +39,7 @@ const AddTransaction = () => {
         required
       />
       <input
+        className="input"
         id="amount"
         type="number"
         placeholder="$"
@@ -44,6 +48,7 @@ const AddTransaction = () => {
         required
       />
       <input
+        className="input"
         id="category"
         type="text"
         placeholder="Category"
@@ -52,6 +57,7 @@ const AddTransaction = () => {
         required
       />
       <input
+        className="input"
         id="date"
         type="date"
         onChange={e => setDate(e.target.value)}

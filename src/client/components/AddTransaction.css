@@ -5,11 +5,21 @@
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  border-radius: 0.4rem;
+  padding: 2.4rem;
+  background-color: #9ee3db;
+  box-shadow: 0 0.2rem 0.2rem rgb(0, 0, 0, 0.1);
 }
 
 .transaction-heading {
   text-align: center;
   font-size: 2rem;
+  color: #022521;
+  opacity: 0.9;
+  text-transform: uppercase;
+  font-size: 1.8rem;
+  letter-spacing: 0.15rem;
+  font-weight: 500;
 }
 
 .btns {
@@ -19,8 +29,37 @@
 
 .btn-1 {
   flex: 1;
+  background-color: #0cbaa6;
+  color: #e7f8f6;
+  box-shadow: 0 0.2rem 0.2rem rgb(0, 0, 0, 0.1);
+  transition: all 0.3s;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.4rem;
+  font-size: 1.6rem;
 }
 
 .btn-2 {
   flex: 1;
+  border: none;
+  background-color: #0cbaa6;
+  color: #e7f8f6;
+  box-shadow: 0 0.2rem 0.2rem rgb(0, 0, 0, 0.1);
+  transition: all 0.3s;
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.4rem;
+  font-size: 1.6rem;
+}
+
+.input {
+  border: none;
+  background-color: #e7f8f6;
+  padding: 1rem;
+  color: #02252177;
+  border-radius: 0.4rem;
+  width: 20rem;
+}
+::placeholder {
+  color: #022521;
+  opacity: 0.5;
 }

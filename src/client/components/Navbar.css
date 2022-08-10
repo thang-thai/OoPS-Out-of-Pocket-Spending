@@ -1,14 +1,33 @@
 @import '../../../public/styles.css';
 
 .main-nav {
-  background-color: #0cbaa6;
-  min-width: 100vw;
+  background-image: linear-gradient(
+    to bottom,
+    #0cbaa6,
+    #1bbdaa,
+    #24bfad,
+    #2dc2b1,
+    #34c5b4,
+    #40c8b8,
+    #4acabb,
+    #53cdbf,
+    #61d1c4,
+    #6ed5c9,
+    #7ad9ce,
+    #86ddd3
+  );
+  min-width: 80vw;
   min-height: 10rem;
   font-size: 2.4rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 6rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  margin: 1.2rem 6rem 2.4rem 6rem;
+  border-radius: 0.4rem;
+  color: #e7f8f6;
+  letter-spacing: 0.15rem;
 }
 
 .totals {

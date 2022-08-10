@@ -10,11 +10,11 @@ router.get('/get-expenses', apiController.getExpenses, (req, res) => {
 });
 
 router.post('/add-expense', apiController.addExpense, (req, res) => {
-  return res.status(200).send('Expense Added');
+  return res.status(200).json(res.locals.data);
 });
 
 router.put('/update-expense', apiController.updateExpense, (req, res) => {
-  return res.status(200).json({});
+  return res.status(200).json(res.locals.data);
 });
 
 router.delete('/delete-expense', apiController.deleteExpense, (req, res) => {

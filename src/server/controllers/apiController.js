@@ -17,7 +17,8 @@ apiController.getExpenses = async (req, res, next) => {
 apiController.addExpense = async (req, res, next) => {
   const { expense, amount, category, date } = req.body;
   try {
-    await Transaction.create({ expense, amount, category, date });
+    const data = await Transaction.create({ expense, amount, category, date });
+    res.locals.data = data;
     return next();
   } catch (error) {
     return next({
@@ -30,10 +31,11 @@ apiController.addExpense = async (req, res, next) => {
 apiController.updateExpense = async (req, res, next) => {
   const { expense, amount, category, date, editId } = req.body;
   try {
-    await Transaction.findByIdAndUpdate(
+    const data = await Transaction.findByIdAndUpdate(
       { _id: editId },
       { expense, amount, category, date }
     );
+    res.locals.data = data;
     return next();
   } catch (error) {
     return next({
