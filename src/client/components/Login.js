@@ -4,8 +4,12 @@ import './Login.css';
 
 const Login = () => {
   let navigate = useNavigate();
-  const routeChange = () => {
+  const homeRoute = () => {
     let path = '/home';
+    navigate(path);
+  };
+  const signupRoute = () => {
+    let path = '/signup';
     navigate(path);
   };
 
@@ -25,10 +29,10 @@ const Login = () => {
           placeholder="Password"
         ></input>
         <br />
-        <button className="login-btn" onClick={routeChange}>
+        <button className="login-btn" onClick={homeRoute}>
           Sign In
         </button>
-        <button className="signup-btn" onClick={routeChange}>
+        <button className="signup-btn" onClick={signupRoute}>
           Sign Up
         </button>
       </div>

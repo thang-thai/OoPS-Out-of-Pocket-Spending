@@ -1,51 +1,32 @@
 @import '../../../public/styles.css';
 
-.login {
+.signup {
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.login-container {
+.signup-container {
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
   text-align: center;
   background-color: #9ee3db;
-  padding: 4.8rem;
+  padding: 4.8rem 8.4rem;
   border-radius: 0.4rem;
   box-shadow: 0 0.2rem 0.4rem rgb(0, 0, 0, 0.2);
 }
 
-.welcome {
-  font-size: 3.2rem;
-  color: #077064;
-  letter-spacing: 0.2rem;
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  position: relative;
 }
 
-.sub-heading {
-  color: #065d53;
-  font-size: 1.6rem;
-  margin-bottom: 2.4rem;
-}
-
-.input-login {
-  border: none;
-  background-color: #e7f8f6;
-  padding: 1rem;
-  color: #065d53;
-  border-radius: 0.4rem;
-  width: auto;
-}
-
-input:focus,
-button:focus {
-  outline: 1px solid #0cbaa6;
-}
-
-.login-btn,
-.signup-btn {
+.confirm-btn,
+.cancel-btn {
   flex: 1;
   background-color: #0cbaa6;
   color: #e7f8f6;
@@ -58,18 +39,32 @@ button:focus {
   font-weight: 700;
 }
 
-.login-btn:hover,
-.signup-btn:hover {
+.confirm-btn:hover,
+.cancel-btn:hover {
   background-color: #065d53;
   cursor: pointer;
 }
 
-.signup-btn {
+.confirm-btn {
+  margin-top: 2.4rem;
+}
+
+.cancel-btn {
   background-color: #e7f8f6;
   color: #0cbaa6;
   font-size: 1.4rem;
 }
 
-.signup-btn:hover {
+.cancel-btn:hover {
   color: #e7f8f6;
+}
+
+.pw-failed {
+  color: red;
+  font-size: 1.4rem;
+  position: absolute;
+  bottom: 24%;
+  left: 0%;
+  transform: translateX(12%);
+  font-weight: 500;
 }
