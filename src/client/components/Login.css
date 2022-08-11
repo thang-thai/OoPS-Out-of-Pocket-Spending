@@ -86,3 +86,11 @@ button {
   font-family: 'Fredoka One', sans-serif;
   letter-spacing: 0.1rem;
 }
+
+.login-failed {
+  color: #ff6666;
+  font-size: 1.3rem;
+  position: absolute;
+  bottom: 42%;
+  left: 41.25%;
+}

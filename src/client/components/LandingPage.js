@@ -10,6 +10,7 @@ const LandingPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [userInfo, setUserInfo] = useState({});
+  const [userExists, setUserExists] = useState(true);
 
   let navigate = useNavigate();
   const homeRoute = () => {
@@ -17,15 +18,23 @@ const LandingPage = () => {
     navigate(path);
   };
   const signupRoute = () => {
+    setUserExists(true);
     let path = '/signup';
     navigate(path);
   };
 
   const handleClick = () => {
     axios.post('/login/authUser', { username, password }).then(res => {
-      if (res.data) {
+      console.log(res);
+      if (res.data === false) {
+        setUserExists(false);
+        setUsername('');
+        setPassword('');
+      }
+      if (res.data.user) {
         const { _id: id, firstName, lastName } = res.data.user[0];
         setUserInfo({ id, firstName, lastName });
+        setUserExists(true);
         homeRoute();
       }
     });
@@ -37,6 +46,8 @@ const LandingPage = () => {
         path="/"
         element={
           <Login
+            setUserExists={setUserExists}
+            userExists={userExists}
             username={username}
             setUsername={setUsername}
             password={password}

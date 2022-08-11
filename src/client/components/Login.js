@@ -11,6 +11,8 @@ const Login = ({
   homeRoute,
   handleClick,
   signupRoute,
+  userExists,
+  setUserExists,
 }) => {
   return (
     <div className="login">
@@ -36,6 +38,11 @@ const Login = ({
           placeholder="Password"
         ></input>
         <br />
+        {!userExists ? (
+          <p className="login-failed">
+            Username or password incorrect, try again or sign up!
+          </p>
+        ) : null}
         <button
           className="login-btn"
           onClick={() => {
