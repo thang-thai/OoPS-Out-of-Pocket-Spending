@@ -1,8 +1,12 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Login.css';
 
 const Login = () => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
   let navigate = useNavigate();
   const homeRoute = () => {
     let path = '/home';
@@ -13,6 +17,14 @@ const Login = () => {
     navigate(path);
   };
 
+  const handleClick = () => {
+    axios.post('/login/authUser', { username, password }).then(res => {
+      if (res.data) {
+        homeRoute();
+      }
+    });
+  };
+
   return (
     <div className="login">
       <div className="login-container">
@@ -21,19 +33,23 @@ const Login = () => {
         <input
           className="input-login"
           type="text"
+          value={username}
+          onChange={e => setUsername(e.target.value)}
           placeholder="Username"
         ></input>
         <input
           className="input-login"
           type="password"
+          value={password}
+          onChange={e => setPassword(e.target.value)}
           placeholder="Password"
         ></input>
         <br />
-        <button className="login-btn" onClick={homeRoute}>
+        <button className="login-btn" onClick={handleClick}>
           Sign In
         </button>
         <button className="signup-btn" onClick={signupRoute}>
-          Sign Up
+          Don't have an account? Sign up here!
         </button>
       </div>
     </div>

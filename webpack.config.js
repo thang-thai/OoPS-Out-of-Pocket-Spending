@@ -20,6 +20,7 @@ module.exports = {
     proxy: {
       '/api': 'http://localhost:5000',
       '/signup': 'http://localhost:5000',
+      '/login': 'http://localhost:5000',
     },
   },
   plugins: [

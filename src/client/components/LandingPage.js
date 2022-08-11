@@ -6,6 +6,9 @@ import ProtectedRoutes from './ProtectedRoutes';
 import SignUp from './SignUp';
 
 const LandingPage = () => {
+  // raise state up to landing page for user info
+  // post request to DB from here
+  // pass info down to protectedApp
   return (
     <Routes>
       <Route path="/" element={<Login />} />

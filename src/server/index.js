@@ -8,6 +8,7 @@ const PORT = process.env.PORT || 5000;
 // require Routers
 const apiRouter = require('./routes/api');
 const signupRouter = require('./routes/signup');
+const loginRouter = require('./routes/login');
 
 // Connect to DB
 const TransactionModel = require('./models/transactionModel');
@@ -29,6 +30,7 @@ app.use(cors());
 // Routes
 app.use('/api', apiRouter);
 app.use('/signup', signupRouter);
+app.use('/login', loginRouter);
 
 // Route for main app
 app.get('/', (req, res) => {
