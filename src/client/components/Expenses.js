@@ -2,21 +2,27 @@ import React, { useState, useEffect } from 'react';
 import './Expenses.css';
 import Expense from './Expense';
 
-const Expenses = ({ expensesList, handleEdit }) => {
-  const expenses = expensesList.map((expense, i) => {
-    return (
-      <Expense
-        key={`${expense}${i}`}
-        expensesList={expensesList}
-        id={expense._id}
-        amount={expense.amount}
-        category={expense.category}
-        date={expense.date}
-        expense={expense.expense}
-        handleEdit={handleEdit}
-      />
-    );
-  });
+const Expenses = ({ expensesList, setExpensesList, handleEdit, userId }) => {
+  const sortDate = () => {};
+  const sortAmount = () => {};
+  const sortType = () => {};
+
+  const expenses = expensesList
+    .filter(expense => expense.userId === userId)
+    .map((expense, i) => {
+      return (
+        <Expense
+          key={`${expense}${i}`}
+          expensesList={expensesList}
+          id={expense._id}
+          amount={expense.amount}
+          category={expense.category}
+          date={expense.date}
+          expense={expense.expense}
+          handleEdit={handleEdit}
+        />
+      );
+    });
   return (
     <div container="expenses">
       <table className="table-heading">
@@ -32,7 +38,7 @@ const Expenses = ({ expensesList, handleEdit }) => {
       </table>
       <div className="expenses-body">
         <table>
-          <tbody>{expenses}</tbody>
+          <tbody>{expenses.reverse()}</tbody>
         </table>
       </div>
     </div>

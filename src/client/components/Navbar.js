@@ -6,6 +6,9 @@ import './Navbar.css';
 const Nav = ({ userInfo, totalExpenses }) => {
   const { id, firstName, lastName } = userInfo;
 
+  const updatedFirst = firstName[0].toUpperCase() + firstName.slice(1);
+  const updatedLast = lastName[0].toUpperCase() + lastName.slice(1);
+
   let navigate = useNavigate();
   const loginRoute = () => {
     let path = '/';
@@ -21,8 +24,11 @@ const Nav = ({ userInfo, totalExpenses }) => {
         <p>Pocket</p>
         <p>Spending</p>
       </div>
-      <div className="username">{`Welcome Back, ${firstName} ${lastName}!`}</div>
-      <div className="total">Total Expenses: ${totalExpenses.toFixed(2)}</div>
+      <div className="username">{`Welcome Back, ${updatedFirst} ${updatedLast}!`}</div>
+      <div className="total">
+        Total Expenses: $
+        {totalExpenses.toLocaleString(undefined, { maximumFractionDigits: 2 })}
+      </div>
       <button onClick={loginRoute} className="logout">
         Logout
       </button>

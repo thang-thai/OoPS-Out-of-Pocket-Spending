@@ -14,6 +14,10 @@ const Login = ({
 }) => {
   return (
     <div className="login">
+      <img
+        className="logo"
+        src={require('../../images/oops.png').default}
+      ></img>
       <div className="login-container">
         <h1 className="welcome">Welcome Back!</h1>
         <p className="sub-heading">Login to continue tracking your finances</p>

@@ -1,5 +1,12 @@
 @import '../../../public/styles.css';
 
+.logo {
+  width: 24rem;
+  height: 24rem;
+  position: absolute;
+  top: 2%;
+}
+
 .login {
   min-height: 100vh;
   display: flex;
@@ -19,7 +26,7 @@
 }
 
 .welcome {
-  font-size: 3.2rem;
+  font-size: 4.8rem;
   color: #077064;
   letter-spacing: 0.2rem;
 }
@@ -37,6 +44,7 @@
   color: #065d53;
   border-radius: 0.4rem;
   width: auto;
+  font-size: 1.4rem;
 }
 
 input:focus,
@@ -67,9 +75,14 @@ button:focus {
 .signup-btn {
   background-color: #e7f8f6;
   color: #0cbaa6;
-  font-size: 1.4rem;
 }
 
 .signup-btn:hover {
   color: #e7f8f6;
+}
+
+input,
+button {
+  font-family: 'Fredoka One', sans-serif;
+  letter-spacing: 0.1rem;
 }

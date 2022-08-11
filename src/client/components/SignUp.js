@@ -81,7 +81,7 @@ const SignUp = () => {
                 required
               ></input>
               <input
-                className="input-login username"
+                className="input-login"
                 value={username}
                 type="text"
                 placeholder="Username"

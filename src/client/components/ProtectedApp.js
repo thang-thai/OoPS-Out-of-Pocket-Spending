@@ -13,6 +13,10 @@ const ProtectedApp = ({ username, password, userInfo }) => {
   const [openModal, setOpenModal] = useState(false);
   const [editId, setEditId] = useState('');
   const [currItem, setCurrItem] = useState([]);
+  // const [sortedTransactions, setSortedTransactions] = useState([
+  //   ...expensesList,
+  // ]);
+  const { id: userId } = userInfo;
 
   const handleEdit = (e, id) => {
     const expense = expensesList.filter(expense => expense._id === id);
@@ -20,6 +24,19 @@ const ProtectedApp = ({ username, password, userInfo }) => {
     setEditId(id);
     setOpenModal(true);
   };
+
+  // const sortTransaction = async () => {
+  //   console.log('sort');
+  //   const sorted = Object.entries(expensesList)
+  //     .sort((a, b) => {
+  //       const objA = a[1].expense.toUpperCase();
+  //       const objB = b[1].expense.toUpperCase();
+  //       return objA < objB ? -1 : objA > objB ? 1 : 0;
+  //     })
+  //     .map(entry => entry[1]);
+
+  //   setSortedTransactions([...sorted]);
+  // };
 
   const closeModal = () => setOpenModal(false);
 
@@ -29,10 +46,9 @@ const ProtectedApp = ({ username, password, userInfo }) => {
       .get('/api/get-expenses')
       .then(res => {
         setExpensesList([...res.data]);
-        const total = expensesList.reduce(
-          (acc, curr) => (acc += curr.amount),
-          0
-        );
+        const total = expensesList
+          .filter(expense => expense.userId === userId)
+          .reduce((acc, curr) => (acc += curr.amount), 0);
         setTotalExpenses(total);
       })
       .catch(err => console.log(err));
@@ -56,12 +72,18 @@ const ProtectedApp = ({ username, password, userInfo }) => {
           ) : null}
         </div>
         <section className="expenses">
-          <Expenses expensesList={expensesList} handleEdit={handleEdit} />
+          <Expenses
+            expensesList={expensesList}
+            setExpensesList={setExpensesList}
+            handleEdit={handleEdit}
+            userId={userId}
+          />
         </section>
         <section className="add-transaction">
           <AddTransaction
             expensesList={expensesList}
             setExpensesList={setExpensesList}
+            userInfo={userInfo}
           />
         </section>
       </main>

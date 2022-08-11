@@ -18,7 +18,9 @@ const Expense = ({ id, amount, category, date, expense, handleEdit }) => {
     <tr id={id}>
       <td className="cell">{expense}</td>
       <td className="cell">{new Date(date).toDateString()}</td>
-      <td className="cell">{`$${amount.toFixed(2)}`}</td>
+      <td className="cell">{`$${amount.toLocaleString(undefined, {
+        maximumFractionDigits: 2,
+      })}`}</td>
       <td className="cell">{category}</td>
       <td className="btns">
         <button

@@ -4,6 +4,7 @@
   display: flex;
   justify-content: center;
   margin-left: 4rem;
+  font-family: sans-serif;
 }
 
 table {
@@ -14,12 +15,13 @@ table {
 
 th {
   font-size: 1.8rem;
-  color: #077064;
+  font-family: 'Fredoka One', sans-serif;
+  color: #022521da;
 }
 
 td.cell {
   text-align: center;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   background-color: #cef1ed;
   border-radius: 0.4rem;
   padding: 0.4rem;

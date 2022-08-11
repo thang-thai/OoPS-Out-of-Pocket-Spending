@@ -3,18 +3,20 @@ import React, { useState } from 'react';
 import './AddTransaction.css';
 const Transaction = require('../../server/models/transactionModel');
 
-const AddTransaction = ({ expensesList, setExpensesList }) => {
+const AddTransaction = ({ expensesList, setExpensesList, userInfo }) => {
   const [expense, setExpense] = useState('');
   const [amount, setAmount] = useState('');
   const [category, setCategory] = useState('');
   const [date, setDate] = useState('');
+
+  const { id: userId } = userInfo;
 
   const handleSubmit = e => {
     e.preventDefault();
 
     // axios.post('/api/addExpense', { expense, amount, category, date });
     axios
-      .post('/api/add-expense', { expense, amount, category, date })
+      .post('/api/add-expense', { expense, amount, category, date, userId })
       .then(res => {
         setExpensesList([...expensesList, res.data]);
       });
