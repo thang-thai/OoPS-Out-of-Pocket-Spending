@@ -9,9 +9,9 @@ const Expense = ({ id, amount, category, date, expense, handleEdit }) => {
     handleEdit(e, id);
   };
 
-  const handleDelete = e => {
-    console.log(e.target.value);
-    axios.delete('/api/delete-expense', { data: { data: e.target.value } });
+  const handleDelete = (e, id) => {
+    console.log(id);
+    axios.delete('/api/delete-expense', { data: { data: id } });
   };
 
   return (
@@ -47,8 +47,9 @@ const Expense = ({ id, amount, category, date, expense, handleEdit }) => {
           }
         </button>
         <button
+          ref={inputRef}
           value={id}
-          onClick={e => handleDelete(e)}
+          onClick={e => handleDelete(e, inputRef.current.value)}
           className="btn-delete"
         >
           {

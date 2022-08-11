@@ -66,3 +66,20 @@
   position: absolute;
   right: 2.5%;
 }
+
+.logout {
+  position: absolute;
+  right: 0.5%;
+  bottom: 3%;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  color: #cef1ed;
+  transition: all 0.5s;
+  outline: none;
+  font-weight: 700;
+}
+
+.logout:hover {
+  color: #0225219a;
+}

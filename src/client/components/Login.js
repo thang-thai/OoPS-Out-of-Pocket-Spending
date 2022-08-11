@@ -32,7 +32,14 @@ const Login = ({
           placeholder="Password"
         ></input>
         <br />
-        <button className="login-btn" onClick={handleClick}>
+        <button
+          className="login-btn"
+          onClick={() => {
+            handleClick();
+            setUsername('');
+            setPassword('');
+          }}
+        >
           Sign In
         </button>
         <button className="signup-btn" onClick={signupRoute}>
