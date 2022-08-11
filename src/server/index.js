@@ -5,10 +5,14 @@ const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+// require Routers
 const apiRouter = require('./routes/api');
+const signupRouter = require('./routes/signup');
 
 // Connect to DB
 const TransactionModel = require('./models/transactionModel');
+const UserModel = require('./models/userModel');
+
 mongoose.connect(
   'mongodb+srv://thangthai:marty123@soloproject.93j556t.mongodb.net/?retryWrites=true&w=majority',
   { useNewUrlParser: true, useUnifiedTopology: true }
@@ -24,6 +28,7 @@ app.use(cors());
 
 // Routes
 app.use('/api', apiRouter);
+app.use('/signup', signupRouter);
 
 // Route for main app
 app.get('/', (req, res) => {

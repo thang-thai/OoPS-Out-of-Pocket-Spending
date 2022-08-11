@@ -1,9 +1,9 @@
 const apiController = {};
-const Transaction = require('../models/transactionModel');
+const TransactionModel = require('../models/transactionModel');
 
 apiController.getExpenses = async (req, res, next) => {
   try {
-    const data = await Transaction.find({});
+    const data = await TransactionModel.find({});
     res.locals.expenses = data;
     return next();
   } catch (error) {
@@ -17,7 +17,12 @@ apiController.getExpenses = async (req, res, next) => {
 apiController.addExpense = async (req, res, next) => {
   const { expense, amount, category, date } = req.body;
   try {
-    const data = await Transaction.create({ expense, amount, category, date });
+    const data = await TransactionModel.create({
+      expense,
+      amount,
+      category,
+      date,
+    });
     res.locals.data = data;
     return next();
   } catch (error) {
@@ -31,7 +36,7 @@ apiController.addExpense = async (req, res, next) => {
 apiController.updateExpense = async (req, res, next) => {
   const { expense, amount, category, date, editId } = req.body;
   try {
-    const data = await Transaction.findByIdAndUpdate(
+    const data = await TransactionModel.findByIdAndUpdate(
       { _id: editId },
       { expense, amount, category, date }
     );
@@ -48,7 +53,7 @@ apiController.updateExpense = async (req, res, next) => {
 apiController.deleteExpense = async (req, res, next) => {
   const { data: id } = req.body;
   try {
-    await Transaction.findByIdAndDelete({ _id: id });
+    await TransactionModel.findByIdAndDelete({ _id: id });
     return next();
   } catch (error) {
     return next({

@@ -19,6 +19,7 @@ module.exports = {
     historyApiFallback: true,
     proxy: {
       '/api': 'http://localhost:5000',
+      '/signup': 'http://localhost:5000',
     },
   },
   plugins: [
