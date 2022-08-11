@@ -12,11 +12,8 @@ loginController.authUser = async (req, res, next) => {
     const match = await bcrypt.compare(password, hash);
     if (match) {
       const user = await UserModel.find({ username, hash });
-      console.log('USER', user);
-      console.log('USER?', user.length === 0);
       if (user.length === 1) {
         res.locals.auth = { match, user };
-        console.log(res.locals.auth);
         return next();
       } else {
         res.locals.auth = false;
