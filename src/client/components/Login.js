@@ -9,7 +9,7 @@ const Login = ({
   password,
   setPassword,
   homeRoute,
-  handleClick,
+  useAuth,
   signupRoute,
   userExists,
   setUserExists,
@@ -46,7 +46,7 @@ const Login = ({
         <button
           className="login-btn"
           onClick={() => {
-            handleClick();
+            useAuth();
             setUsername('');
             setPassword('');
           }}

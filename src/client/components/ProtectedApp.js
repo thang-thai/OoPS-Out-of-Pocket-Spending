@@ -25,18 +25,16 @@ const ProtectedApp = ({ username, password, userInfo }) => {
     setOpenModal(true);
   };
 
-  // const sortTransaction = async () => {
-  //   console.log('sort');
-  //   const sorted = Object.entries(expensesList)
-  //     .sort((a, b) => {
-  //       const objA = a[1].expense.toUpperCase();
-  //       const objB = b[1].expense.toUpperCase();
-  //       return objA < objB ? -1 : objA > objB ? 1 : 0;
-  //     })
-  //     .map(entry => entry[1]);
+  const handleDelete = (e, id) => {
+    axios.delete('/api/delete-expense', { data: { data: id } });
+  };
 
-  //   setSortedTransactions([...sorted]);
-  // };
+  const calculateTotal = () => {
+    const total = expensesList
+      .filter(expense => expense.userId === userId)
+      .reduce((acc, curr) => (acc += curr.amount), 0);
+    setTotalExpenses(total);
+  };
 
   const closeModal = () => setOpenModal(false);
 
@@ -45,11 +43,9 @@ const ProtectedApp = ({ username, password, userInfo }) => {
     axios
       .get('/api/get-expenses')
       .then(res => {
+        console.log('RES', res.data);
         setExpensesList([...res.data]);
-        const total = expensesList
-          .filter(expense => expense.userId === userId)
-          .reduce((acc, curr) => (acc += curr.amount), 0);
-        setTotalExpenses(total);
+        calculateTotal();
       })
       .catch(err => console.log(err));
   });
@@ -76,6 +72,7 @@ const ProtectedApp = ({ username, password, userInfo }) => {
             expensesList={expensesList}
             setExpensesList={setExpensesList}
             handleEdit={handleEdit}
+            handleDelete={handleDelete}
             userId={userId}
           />
         </section>

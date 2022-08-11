@@ -23,11 +23,23 @@ const EditExpense = ({
   // } = currItem[0];
 
   // console.log('CURR EXPENSE:', currExpense);
+
+  const setClear = () => {
+    setExpense('');
+    setAmount('');
+    setCategory('');
+    setDate('');
+  };
+
   const handleSubmit = e => {
     e.preventDefault();
     axios
       .put('/api/update-expense', { expense, amount, category, date, editId })
-      .then(res => console.log(res.data));
+      .then(res => {
+        axios.get('/api/get-expenses').then(res => {
+          setExpensesList([...res.data]);
+        });
+      });
 
     // Reset values
     setExpense('');
@@ -73,7 +85,9 @@ const EditExpense = ({
       />
       <div className="btns">
         <button className="btn-1">Update</button>
-        <button className="btn-2">Clear</button>
+        <button onClick={setClear} className="btn-2">
+          Clear
+        </button>
       </div>
       <button onClick={closeModal} className="btn-3">
         Cancel

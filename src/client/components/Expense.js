@@ -2,16 +2,23 @@ import axios from 'axios';
 import React, { useRef } from 'react';
 import './Expense.css';
 
-const Expense = ({ id, amount, category, date, expense, handleEdit }) => {
+const Expense = ({
+  id,
+  amount,
+  category,
+  date,
+  expense,
+  handleEdit,
+  handleDelete,
+}) => {
   const inputRef = useRef(null);
 
   const handleUpdate = (e, id) => {
     handleEdit(e, id);
   };
 
-  const handleDelete = (e, id) => {
-    console.log(id);
-    axios.delete('/api/delete-expense', { data: { data: id } });
+  const handleRemove = (e, id) => {
+    handleDelete(e, id);
   };
 
   return (
@@ -51,7 +58,7 @@ const Expense = ({ id, amount, category, date, expense, handleEdit }) => {
         <button
           ref={inputRef}
           value={id}
-          onClick={e => handleDelete(e, inputRef.current.value)}
+          onClick={e => handleRemove(e, inputRef.current.value)}
           className="btn-delete"
         >
           {

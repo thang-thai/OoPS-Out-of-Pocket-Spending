@@ -6,19 +6,20 @@ const loginController = {};
 
 loginController.authUser = async (req, res, next) => {
   const { username, password } = req.body;
-  const saltRounds = 10;
+  // const saltRounds = 10;
   try {
-    const hash = await bcrypt.hash(password, saltRounds);
-    const match = await bcrypt.compare(password, hash);
-    if (match) {
-      const user = await UserModel.find({ username, hash });
-      if (user.length === 1) {
-        res.locals.auth = { match, user };
-        return next();
-      } else {
-        res.locals.auth = false;
+    // const hash = await bcrypt.hash(password, saltRounds);
+    const user = await UserModel.find({ username: username });
+    if (user.length) {
+      const { password: storedPw } = user[0];
+      const match = await bcrypt.compare(password, storedPw);
+      if (match) {
+        res.locals.auth = user[0];
         return next();
       }
+    } else {
+      res.locals.auth = false;
+      return next();
     }
   } catch (error) {
     return next({

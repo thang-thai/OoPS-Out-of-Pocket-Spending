@@ -9,18 +9,9 @@ cookieController.setCookie = (req, res, next) => {
 };
 
 cookieController.setSSIDCookie = async (req, res, next) => {
-  const { username } = req.body;
-  try {
-    const findId = await UserModel.find({ username });
-    res.cookie('SSID', findId[0]._id, { httpOnly: true });
-    res.locals.ssid = findId[0]._id;
-    return next();
-  } catch (error) {
-    return next({
-      log: 'ERROR: error in cookieController.setSSIDCookie',
-      msg: { err: 'ERROR: error in cookieController.setSSIDCookie' },
-    });
-  }
+  console.log('IN SSID', res.locals.data._id);
+  res.cookie('SSID', res.locals.data._id, { httpOnly: true });
+  return next();
 };
 
 module.exports = cookieController;

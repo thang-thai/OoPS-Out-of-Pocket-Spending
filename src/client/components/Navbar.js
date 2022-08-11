@@ -5,7 +5,7 @@ import './Navbar.css';
 
 const Nav = ({ userInfo, totalExpenses }) => {
   const { id, firstName, lastName } = userInfo;
-
+  console.log(totalExpenses);
   const updatedFirst = firstName[0].toUpperCase() + firstName.slice(1);
   const updatedLast = lastName[0].toUpperCase() + lastName.slice(1);
 
@@ -14,7 +14,6 @@ const Nav = ({ userInfo, totalExpenses }) => {
     let path = '/';
     navigate(path);
   };
-
   return (
     <nav className="main-nav">
       <img className="logo" src={require('../../images/oops.png').default} />

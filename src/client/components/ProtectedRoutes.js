@@ -1,6 +1,7 @@
 import React from 'react';
 import { Navigate, Outlet } from 'react-router';
 import Login from './Login';
+import LandingPage from './LandingPage';
 
 const useAuth = () => {
   // switch out for a call to DB

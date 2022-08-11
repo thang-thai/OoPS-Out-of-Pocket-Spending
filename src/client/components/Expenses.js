@@ -2,7 +2,13 @@ import React, { useState, useEffect } from 'react';
 import './Expenses.css';
 import Expense from './Expense';
 
-const Expenses = ({ expensesList, setExpensesList, handleEdit, userId }) => {
+const Expenses = ({
+  expensesList,
+  setExpensesList,
+  handleEdit,
+  userId,
+  handleDelete,
+}) => {
   const sortDate = () => {};
   const sortAmount = () => {};
   const sortType = () => {};
@@ -20,6 +26,7 @@ const Expenses = ({ expensesList, setExpensesList, handleEdit, userId }) => {
           date={expense.date}
           expense={expense.expense}
           handleEdit={handleEdit}
+          handleDelete={handleDelete}
         />
       );
     });

@@ -23,16 +23,15 @@ const LandingPage = () => {
     navigate(path);
   };
 
-  const handleClick = () => {
+  const useAuth = () => {
     axios.post('/login/authUser', { username, password }).then(res => {
       console.log(res);
       if (res.data === false) {
         setUserExists(false);
         setUsername('');
         setPassword('');
-      }
-      if (res.data.user) {
-        const { _id: id, firstName, lastName } = res.data.user[0];
+      } else {
+        const { _id: id, firstName, lastName } = res.data;
         setUserInfo({ id, firstName, lastName });
         setUserExists(true);
         homeRoute();
@@ -53,7 +52,7 @@ const LandingPage = () => {
             password={password}
             setPassword={setPassword}
             homeRoute={homeRoute}
-            handleClick={handleClick}
+            useAuth={useAuth}
             signupRoute={signupRoute}
           />
         }
