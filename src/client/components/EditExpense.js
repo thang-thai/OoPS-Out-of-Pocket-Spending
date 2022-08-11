@@ -3,15 +3,28 @@ import axios from 'axios';
 import './EditExpense.css';
 const Transaction = require('../../server/models/transactionModel');
 
-const EditExpense = ({ closeModal, editId, expensesList, setExpensesList }) => {
+const EditExpense = ({
+  closeModal,
+  editId,
+  expensesList,
+  setExpensesList,
+  currItem,
+}) => {
   const [expense, setExpense] = useState('');
   const [amount, setAmount] = useState('');
   const [category, setCategory] = useState('');
   const [date, setDate] = useState('');
 
+  // const {
+  //   expense: currExpense,
+  //   amount: currAmount,
+  //   category: currCategory,
+  //   date: currDate,
+  // } = currItem[0];
+
+  // console.log('CURR EXPENSE:', currExpense);
   const handleSubmit = e => {
     e.preventDefault();
-    console.log(editId);
     axios
       .put('/api/update-expense', { expense, amount, category, date, editId })
       .then(res => console.log(res.data));
@@ -25,8 +38,8 @@ const EditExpense = ({ closeModal, editId, expensesList, setExpensesList }) => {
   };
 
   return (
-    <form className="transactions" onSubmit={handleSubmit}>
-      <p className="transaction-heading">Edit Expense</p>
+    <form className="edit-expense" onSubmit={handleSubmit}>
+      <p className="edit-heading">Edit Expense</p>
       <input
         id="expense"
         type="text"

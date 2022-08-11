@@ -1,34 +1,39 @@
 @import '../../../public/styles.css';
 
-.expense-heading {
-  display: flex;
-  justify-content: center;
-  /* align-items: center; */
-  font-size: 1.8rem;
-}
-
 .expenses {
   display: flex;
   justify-content: center;
+  margin-left: 4rem;
 }
 
 table {
   width: 100rem;
   table-layout: fixed;
+  border-spacing: 0.6rem;
 }
 
 th {
-  font-size: 2.4rem;
+  font-size: 1.8rem;
+  color: #077064;
 }
 
-td {
+td.cell {
   text-align: center;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
+  background-color: #cef1ed;
+  border-radius: 0.4rem;
+  padding: 0.4rem;
 }
 
 .btns {
   display: flex;
   gap: 1rem;
+  margin-right: 0;
+}
+
+.delete-icon,
+.edit-icon {
+  fill: #088274;
 }
 
 .btn-edit,

@@ -12,7 +12,7 @@ loginController.authUser = async (req, res, next) => {
     const match = await bcrypt.compare(password, hash);
     const user = await UserModel.find({ username, hash });
     if (user && match) {
-      res.locals.auth = match;
+      res.locals.auth = { match, user };
       return next();
     }
   } catch (error) {

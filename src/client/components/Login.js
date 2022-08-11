@@ -3,28 +3,15 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Login.css';
 
-const Login = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-
-  let navigate = useNavigate();
-  const homeRoute = () => {
-    let path = '/home';
-    navigate(path);
-  };
-  const signupRoute = () => {
-    let path = '/signup';
-    navigate(path);
-  };
-
-  const handleClick = () => {
-    axios.post('/login/authUser', { username, password }).then(res => {
-      if (res.data) {
-        homeRoute();
-      }
-    });
-  };
-
+const Login = ({
+  username,
+  setUsername,
+  password,
+  setPassword,
+  homeRoute,
+  handleClick,
+  signupRoute,
+}) => {
   return (
     <div className="login">
       <div className="login-container">
@@ -49,7 +36,7 @@ const Login = () => {
           Sign In
         </button>
         <button className="signup-btn" onClick={signupRoute}>
-          Don't have an account? Sign up here!
+          Don't have an account? Sign up now!
         </button>
       </div>
     </div>

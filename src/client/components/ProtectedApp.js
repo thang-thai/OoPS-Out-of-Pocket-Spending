@@ -3,18 +3,22 @@ import axios from 'axios';
 import Nav from './Navbar';
 import AddTransaction from './AddTransaction';
 import Expenses from './Expenses';
-import './App.css';
+import './ProtectedApp.css';
 import EditExpense from './EditExpense';
+import Overlay from './Overlay';
 
-const ProtectedApp = () => {
+const ProtectedApp = ({ username, password, userInfo }) => {
+  const [totalExpenses, setTotalExpenses] = useState(0);
   const [expensesList, setExpensesList] = useState([]);
   const [openModal, setOpenModal] = useState(false);
   const [editId, setEditId] = useState('');
+  const [currItem, setCurrItem] = useState([]);
 
-  const handleEdit = e => {
-    setEditId(e.target.value);
+  const handleEdit = (e, id) => {
+    const expense = expensesList.filter(expense => expense._id === id);
+    setCurrItem([...expense]);
+    setEditId(id);
     setOpenModal(true);
-    console.log('ALL THE WAY BACK UP', e.target.value);
   };
 
   const closeModal = () => setOpenModal(false);
@@ -25,13 +29,19 @@ const ProtectedApp = () => {
       .get('/api/get-expenses')
       .then(res => {
         setExpensesList([...res.data]);
+        const total = expensesList.reduce(
+          (acc, curr) => (acc += curr.amount),
+          0
+        );
+        setTotalExpenses(total);
       })
       .catch(err => console.log(err));
   });
   return (
     <div>
+      {openModal ? <Overlay /> : null};
       <header>
-        <Nav />
+        <Nav userInfo={userInfo} totalExpenses={totalExpenses} />
       </header>
       <main className="main-container">
         <div className="edit-modal">
@@ -41,17 +51,10 @@ const ProtectedApp = () => {
               editId={editId}
               expensesList={expensesList}
               setExpensesList={setExpensesList}
+              currItem={currItem}
             />
           ) : null}
         </div>
-        <section className="routes">
-          <a className="route" href="#">
-            Summary
-          </a>
-          <a className="route" href="#">
-            All Expenses
-          </a>
-        </section>
         <section className="expenses">
           <Expenses expensesList={expensesList} handleEdit={handleEdit} />
         </section>

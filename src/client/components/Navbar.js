@@ -1,14 +1,20 @@
 import React from 'react';
+
 import './Navbar.css';
 
-const Nav = () => {
+const Nav = ({ userInfo, totalExpenses }) => {
+  const { id, firstName, lastName } = userInfo;
   return (
     <nav className="main-nav">
-      <div className="logo">Expenses</div>
-      <div className="totals">
-        <div className="yearly">$ Total Expenses</div>
+      <img className="logo" src={require('../../images/oops.png').default} />
+      <div className="logo-name">
+        <p>Out</p>
+        <p>Of</p>
+        <p>Pocket</p>
+        <p>Spending</p>
       </div>
-      <div className="username">Thang Thai</div>
+      <div className="username">{`Welcome Back, ${firstName} ${lastName}!`}</div>
+      <div className="total">Total Expenses: ${totalExpenses.toFixed(2)}</div>
     </nav>
   );
 };

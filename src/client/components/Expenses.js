@@ -7,6 +7,7 @@ const Expenses = ({ expensesList, handleEdit }) => {
     return (
       <Expense
         key={`${expense}${i}`}
+        expensesList={expensesList}
         id={expense._id}
         amount={expense.amount}
         category={expense.category}
@@ -18,17 +19,22 @@ const Expenses = ({ expensesList, handleEdit }) => {
   });
   return (
     <div container="expenses">
-      <table>
+      <table className="table-heading">
         <thead>
-          <tr className="expenses-heading">
+          <tr>
             <th>Transaction</th>
             <th>Date</th>
             <th>Amount</th>
             <th>Type</th>
+            <th>{null}</th>
           </tr>
         </thead>
-        <tbody>{expenses}</tbody>
       </table>
+      <div className="expenses-body">
+        <table>
+          <tbody>{expenses}</tbody>
+        </table>
+      </div>
     </div>
   );
 };

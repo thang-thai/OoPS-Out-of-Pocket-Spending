@@ -20,17 +20,49 @@
   min-height: 10rem;
   font-size: 2.4rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   padding: 0 6rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   margin: 1.2rem 6rem 2.4rem 6rem;
   border-radius: 0.4rem;
-  color: #e7f8f6;
+  color: #077064;
   letter-spacing: 0.15rem;
+  position: relative;
 }
 
-.totals {
-  display: flex;
-  gap: 6rem;
+.username {
+  color: #0225219a;
+  font-size: 3.2rem;
+  font-weight: 700;
+  bottom: 1rem;
+  right: 1rem;
+}
+
+.logo {
+  width: 10rem;
+  height: 10rem;
+  position: absolute;
+  left: 2rem;
+}
+
+.logo-name {
+  font-size: 1.4rem;
+  position: absolute;
+  top: 25%;
+  left: 9.5%;
+  color: #0225219a;
+  font-weight: 700;
+  letter-spacing: 0.2rem;
+  line-height: 1;
+}
+
+.total {
+  font-weight: 700;
+  font-size: 1.8rem;
+  background-color: #cef1edd6;
+  padding: 1.2rem;
+  border-radius: 0.4rem;
+  position: absolute;
+  right: 2.5%;
 }
