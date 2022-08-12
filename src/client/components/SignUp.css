@@ -1,5 +1,13 @@
 @import '../../../public/styles.css';
 
+.logo-signup {
+  width: 10rem;
+  height: 10rem;
+  position: absolute;
+  top: 2%;
+  left: 1%;
+}
+
 .signup {
   min-height: 100vh;
   display: flex;
@@ -64,7 +72,7 @@
   font-size: 1.4rem;
   position: absolute;
   bottom: 24%;
-  left: 0%;
+  left: 8%;
   transform: translateX(12%);
   font-weight: 500;
 }

@@ -43,7 +43,6 @@ const ProtectedApp = ({ username, password, userInfo }) => {
     axios
       .get('/api/get-expenses')
       .then(res => {
-        console.log('RES', res.data);
         setExpensesList([...res.data]);
         calculateTotal();
       })

@@ -50,6 +50,10 @@ const SignUp = () => {
 
   return (
     <div className="signup">
+      <img
+        className="logo-signup"
+        src={require('../../images/oops.png').default}
+      ></img>
       <div className="signup-container">
         <h1 className="welcome">
           {!userCreated ? 'Almost there!' : 'Sign Up Complete!'}

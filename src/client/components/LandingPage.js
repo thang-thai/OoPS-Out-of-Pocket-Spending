@@ -25,8 +25,8 @@ const LandingPage = () => {
 
   const useAuth = () => {
     axios.post('/login/authUser', { username, password }).then(res => {
-      console.log(res);
       if (res.data === false) {
+        console.log('INSIDE');
         setUserExists(false);
         setUsername('');
         setPassword('');

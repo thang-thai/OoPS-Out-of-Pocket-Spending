@@ -33,6 +33,8 @@ app.use(express.json());
 app.use(cors());
 app.use(cookieParser());
 
+app.use(express.static(path.resolve(__dirname, '../../dist')));
+
 // Routes
 app.use('/api', apiRouter);
 app.use('/signup', signupRouter);
