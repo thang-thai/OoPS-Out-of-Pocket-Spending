@@ -54,7 +54,7 @@ module.exports = {
       },
     ],
   },
-  performance: {
+  performance: { // this refers to the case that the bundled file is overly large
     hints: false,
     maxAssetSize: 500000,
     maxEntrypointSize: 500000,
