@@ -31,8 +31,8 @@
     "nodemon": "^2.0.19",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router": "^6.3.0",
-    "react-router-dom": "^6.3.0"
+    "react-router": "^6.4.5",
+    "react-router-dom": "^6.4.5"
   },
   "devDependencies": {
     "@babel/core": "^7.18.10",

@@ -54,6 +54,9 @@ module.exports = {
       },
     ],
   },
+  resolve: {
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
+  },
   performance: {
     // this refers to the case that the bundled file is overly large
     hints: false,
