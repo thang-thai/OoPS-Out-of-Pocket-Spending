@@ -12,15 +12,15 @@ module.exports = {
       directory: path.resolve(__dirname, 'dist'),
       publicPath: '/dist',
     },
-    port: 3000,
+    port: 5000,
     open: true,
     hot: true,
     compress: true,
     historyApiFallback: true,
     proxy: {
-      '/api': 'http://localhost:5000',
-      '/signup': 'http://localhost:5000',
-      '/login': 'http://localhost:5000',
+      '/api': 'http://localhost:3000',
+      '/signup': 'http://localhost:3000',
+      '/login': 'http://localhost:3000',
     },
   },
   plugins: [
@@ -54,7 +54,8 @@ module.exports = {
       },
     ],
   },
-  performance: { // this refers to the case that the bundled file is overly large
+  performance: {
+    // this refers to the case that the bundled file is overly large
     hints: false,
     maxAssetSize: 500000,
     maxEntrypointSize: 500000,

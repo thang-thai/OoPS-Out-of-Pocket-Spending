@@ -54,7 +54,7 @@ const Login = ({
           Sign In
         </button>
         <button className="signup-btn" onClick={signupRoute}>
-          Don't have an account? Sign up now!
+          Don't have an account? Sign Up!
         </button>
       </div>
     </div>
@@ -62,4 +62,3 @@ const Login = ({
 };
 
 export default Login;
-
