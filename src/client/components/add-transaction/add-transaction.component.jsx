@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-import './add-transaction.css';
+import './add-transaction.styles.css';
 const Transaction = require('../../../server/models/transactionModel');
 
 const AddTransaction = ({ expensesList, setExpensesList, userInfo }) => {

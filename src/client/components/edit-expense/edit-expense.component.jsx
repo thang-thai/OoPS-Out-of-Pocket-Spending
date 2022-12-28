@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './edit-expense.css';
-const Transaction = require('../../../../server/models/transactionModel');
+import './edit-expense.styles.css';
+const Transaction = require('../../../server/models/transactionModel');
 
 const EditExpense = ({
   closeModal,

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useRef } from 'react';
-import './Expense.css';
+import './expense.styles.css';
 
 const Expense = ({
   id,

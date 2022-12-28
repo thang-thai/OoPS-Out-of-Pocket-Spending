@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
-import Login from '../../components/Login';
+import Login from '../../components/login/login.component';
 import ProtectedApp from '../../components/ProtectedApp';
 import ProtectedRoutes from '../../components/ProtectedRoutes';
 import SignUp from '../../components/SignUp';

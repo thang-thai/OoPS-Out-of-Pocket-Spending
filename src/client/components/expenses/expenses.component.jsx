@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import './Expenses.css';
-import Expense from './Expense';
+import './expenses.styles.css';
+import Expense from '../expense/expense.component';
 
 const Expenses = ({
   expensesList,

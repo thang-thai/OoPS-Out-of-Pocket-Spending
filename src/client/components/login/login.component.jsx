@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Login.css';
+import './login.styles.css';
 
 const Login = ({
   username,
@@ -18,7 +18,7 @@ const Login = ({
     <div className="login">
       <img
         className="logo"
-        src={require('../../images/oops.png').default}
+        src={require('../../../images/oops.png').default}
       ></img>
       <div className="login-container">
         <h1 className="welcome">Welcome Back!</h1>
