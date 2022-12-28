@@ -7,7 +7,7 @@ import {
   createRoutesFromElements,
   RouterProvider,
 } from 'react-router-dom';
-import ErrorPage from './error-page';
+import ErrorPage from '../client/error-page';
 
 // const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -20,7 +20,9 @@ import ErrorPage from './error-page';
 // ]);
 
 const router = createBrowserRouter(
-  createRoutesFromElements(<Route path="/" element={<Landing />} />)
+  createRoutesFromElements(
+    <Route path="/" element={<Landing />} errorElement={<ErrorPage />}></Route>
+  )
 );
 
 ReactDOM.createRoot(document.getElementById('root')).render(

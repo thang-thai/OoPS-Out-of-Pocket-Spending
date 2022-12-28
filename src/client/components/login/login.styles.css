@@ -1,8 +1,9 @@
 .logo {
-  width: 24rem;
-  height: 24rem;
+  width: 10rem;
+  height: 10rem;
   position: absolute;
   top: 2%;
+  left: 2%;
 }
 
 .login {

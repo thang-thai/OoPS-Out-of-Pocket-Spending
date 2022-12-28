@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const path = require('path');
+const bodyParser = require('body-parser');
 const app = express();
 const PORT = process.env.PORT || 3000;
 const cookieParser = require('cookie-parser');
@@ -14,15 +15,15 @@ const loginRouter = require('./routes/login');
 // require Controllers
 const cookieController = require('./controllers/cookieController');
 
-// require Models
-const TransactionModel = require('./models/transactionModel');
-const UserModel = require('./models/userModel');
+// // require Models
+// const TransactionModel = require('./models/transactionModel');
+// const UserModel = require('./models/userModel');
 
-// Connect to DB
-mongoose.connect(
-  'mongodb+srv://thangthai:marty123@soloproject.93j556t.mongodb.net/?retryWrites=true&w=majority',
-  { useNewUrlParser: true, useUnifiedTopology: true }
-);
+// // Connect to DB
+// mongoose.connect(
+//   'mongodb+srv://thangthai:marty123@soloproject.93j556t.mongodb.net/?retryWrites=true&w=majority',
+//   { useNewUrlParser: true, useUnifiedTopology: true }
+// );
 
 mongoose.connection.once('open', () => {
   console.log('Connected to Database');
@@ -32,6 +33,7 @@ mongoose.connection.once('open', () => {
 app.use(express.json());
 app.use(cors());
 app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static(path.resolve(__dirname, '../../dist')));
 
