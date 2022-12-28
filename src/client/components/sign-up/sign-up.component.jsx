@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './SignUp.css';
+import './sign-up.styles.css';
 
 const SignUp = () => {
   const [firstName, setFirstName] = useState('');
@@ -52,7 +52,7 @@ const SignUp = () => {
     <div className="signup">
       <img
         className="logo-signup"
-        src={require('../../images/oops.png').default}
+        src={require('../../../images/oops.png').default}
       ></img>
       <div className="signup-container">
         <h1 className="welcome">

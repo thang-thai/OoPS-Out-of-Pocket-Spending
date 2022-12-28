@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Route } from 'react-router-dom';
-import Home from './routes/home/home.component';
+import Landing from './routes/landing/landing.component';
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -20,7 +20,7 @@ import ErrorPage from './error-page';
 // ]);
 
 const router = createBrowserRouter(
-  createRoutesFromElements(<Route path="/" element={<Home />} />)
+  createRoutesFromElements(<Route path="/" element={<Landing />} />)
 );
 
 ReactDOM.createRoot(document.getElementById('root')).render(

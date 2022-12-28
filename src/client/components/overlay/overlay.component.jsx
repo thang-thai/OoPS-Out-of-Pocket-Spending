@@ -1,5 +1,5 @@
 import React from 'react';
-import './Overlay.css';
+import './overlay.styles.css';
 
 const Overlay = () => {
   return <div className="overlay"></div>;

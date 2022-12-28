@@ -1,9 +1,9 @@
 import React from 'react';
-import Home from './routes/home/home.component';
+import Landing from './routes/landing/landing.component';
 import '../styles.css';
 
 const App = () => {
-  return <Home />;
+  return <Landing />;
 };
 
 export default App;

@@ -1,76 +1,89 @@
-import React, { useState } from 'react';
-import { Routes, Route, useNavigate } from 'react-router-dom';
-import Login from '../../components/login/login.component';
-import ProtectedApp from '../../components/ProtectedApp';
-import ProtectedRoutes from '../../components/ProtectedRoutes';
-import SignUp from '../../components/SignUp';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
+import Nav from '../../components/navbar/navbar.component.jsx';
+import AddTransaction from '../../components/add-transaction/add-transaction.component';
+import Expenses from '../../components/expenses/expenses.component';
+import './home.styles.css';
+import EditExpense from '../../components/edit-expense/edit-expense.component';
+import Overlay from '../../components/overlay/overlay.component';
 
-const Home = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [userInfo, setUserInfo] = useState({});
-  const [userExists, setUserExists] = useState(true);
+const Home = ({ username, password, userInfo }) => {
+  const [totalExpenses, setTotalExpenses] = useState(0);
+  const [expensesList, setExpensesList] = useState([]);
+  const [openModal, setOpenModal] = useState(false);
+  const [editId, setEditId] = useState('');
+  const [currItem, setCurrItem] = useState([]);
+  // const [sortedTransactions, setSortedTransactions] = useState([
+  //   ...expensesList,
+  // ]);
+  const { id: userId } = userInfo;
 
-  let navigate = useNavigate();
-  const homeRoute = () => {
-    let path = '/home';
-    navigate(path);
-  };
-  const signupRoute = () => {
-    setUserExists(true);
-    let path = '/signup';
-    navigate(path);
-  };
-
-  const useAuth = () => {
-    axios.post('/login/authUser', { username, password }).then(res => {
-      if (res.data === false) {
-        console.log('INSIDE');
-        setUserExists(false);
-        setUsername('');
-        setPassword('');
-      } else {
-        const { _id: id, firstName, lastName } = res.data;
-        setUserInfo({ id, firstName, lastName });
-        setUserExists(true);
-        homeRoute();
-      }
-    });
+  const handleEdit = (e, id) => {
+    const expense = expensesList.filter(expense => expense._id === id);
+    setCurrItem([...expense]);
+    setEditId(id);
+    setOpenModal(true);
   };
 
+  const handleDelete = (e, id) => {
+    axios.delete('/api/delete-expense', { data: { data: id } });
+  };
+
+  const calculateTotal = () => {
+    const total = expensesList
+      .filter(expense => expense.userId === userId)
+      .reduce((acc, curr) => (acc += curr.amount), 0);
+    setTotalExpenses(total);
+  };
+
+  const closeModal = () => setOpenModal(false);
+
+  // Render all current expenses on load
+  useEffect(() => {
+    axios
+      .get('/api/get-expenses')
+      .then(res => {
+        setExpensesList([...res.data]);
+        calculateTotal();
+      })
+      .catch(err => console.log(err));
+  });
   return (
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <Login
-            setUserExists={setUserExists}
-            userExists={userExists}
-            username={username}
-            setUsername={setUsername}
-            password={password}
-            setPassword={setPassword}
-            homeRoute={homeRoute}
-            useAuth={useAuth}
-            signupRoute={signupRoute}
-          />
-        }
-      />
-      <Route path="/signup" element={<SignUp />} />
-      <Route element={<ProtectedRoutes />}>
-        <Route
-          path="/home"
-          element={
-            <ProtectedApp
-              username={username}
-              password={password}
-              userInfo={userInfo}
+    <div>
+      {openModal ? <Overlay /> : null};
+      <header>
+        <Nav userInfo={userInfo} totalExpenses={totalExpenses} />
+      </header>
+      <main className="main-container">
+        <div className="edit-modal">
+          {openModal ? (
+            <EditExpense
+              closeModal={closeModal}
+              editId={editId}
+              expensesList={expensesList}
+              setExpensesList={setExpensesList}
+              currItem={currItem}
             />
-          }
-        />
-      </Route>
-    </Routes>
+          ) : null}
+        </div>
+        <section className="expenses">
+          <Expenses
+            expensesList={expensesList}
+            setExpensesList={setExpensesList}
+            handleEdit={handleEdit}
+            handleDelete={handleDelete}
+            userId={userId}
+          />
+        </section>
+        <section className="add-transaction">
+          <AddTransaction
+            expensesList={expensesList}
+            setExpensesList={setExpensesList}
+            userInfo={userInfo}
+          />
+        </section>
+      </main>
+    </div>
   );
 };
 

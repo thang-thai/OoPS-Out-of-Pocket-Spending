@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import './Navbar.css';
+import './navbar.styles.css';
 
 const Nav = ({ userInfo, totalExpenses }) => {
   const { id, firstName, lastName } = userInfo;
@@ -15,7 +15,7 @@ const Nav = ({ userInfo, totalExpenses }) => {
   };
   return (
     <nav className="main-nav">
-      <img className="logo" src={require('../../images/oops.png').default} />
+      <img className="logo" src={require('../../../images/oops.png').default} />
       <div className="logo-name">
         <p>Out</p>
         <p>Of</p>
