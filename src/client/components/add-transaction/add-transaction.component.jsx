@@ -1,44 +1,24 @@
-import React, { useState } from 'react';
 import axios from 'axios';
-import './EditExpense.css';
-const Transaction = require('../../server/models/transactionModel');
+import React, { useState } from 'react';
+import './add-transaction.css';
+const Transaction = require('../../../server/models/transactionModel');
 
-const EditExpense = ({
-  closeModal,
-  editId,
-  expensesList,
-  setExpensesList,
-  currItem,
-}) => {
+const AddTransaction = ({ expensesList, setExpensesList, userInfo }) => {
   const [expense, setExpense] = useState('');
   const [amount, setAmount] = useState('');
   const [category, setCategory] = useState('');
   const [date, setDate] = useState('');
 
-  // const {
-  //   expense: currExpense,
-  //   amount: currAmount,
-  //   category: currCategory,
-  //   date: currDate,
-  // } = currItem[0];
-
-  // console.log('CURR EXPENSE:', currExpense);
-
-  const setClear = () => {
-    setExpense('');
-    setAmount('');
-    setCategory('');
-    setDate('');
-  };
+  const { id: userId } = userInfo;
 
   const handleSubmit = e => {
     e.preventDefault();
+
+    // axios.post('/api/addExpense', { expense, amount, category, date });
     axios
-      .put('/api/update-expense', { expense, amount, category, date, editId })
+      .post('/api/add-expense', { expense, amount, category, date, userId })
       .then(res => {
-        axios.get('/api/get-expenses').then(res => {
-          setExpensesList([...res.data]);
-        });
+        setExpensesList([...expensesList, res.data]);
       });
 
     // Reset values
@@ -46,13 +26,13 @@ const EditExpense = ({
     setAmount('');
     setCategory('');
     setDate('');
-    closeModal();
   };
 
   return (
-    <form className="edit-expense" onSubmit={handleSubmit}>
-      <p className="edit-heading">Edit Expense</p>
+    <form className="transactions" onSubmit={handleSubmit}>
+      <p className="transaction-heading">New Expense</p>
       <input
+        className="input"
         id="expense"
         type="text"
         placeholder="Expense"
@@ -61,6 +41,7 @@ const EditExpense = ({
         required
       />
       <input
+        className="input"
         id="amount"
         type="number"
         placeholder="$"
@@ -69,6 +50,7 @@ const EditExpense = ({
         required
       />
       <input
+        className="input"
         id="category"
         type="text"
         placeholder="Category"
@@ -77,6 +59,7 @@ const EditExpense = ({
         required
       />
       <input
+        className="input"
         id="date"
         type="date"
         onChange={e => setDate(e.target.value)}
@@ -84,16 +67,11 @@ const EditExpense = ({
         required
       />
       <div className="btns">
-        <button className="btn-1">Update</button>
-        <button onClick={setClear} className="btn-2">
-          Clear
-        </button>
+        <button className="btn-1">Add</button>
+        <button className="btn-2">Clear</button>
       </div>
-      <button onClick={closeModal} className="btn-3">
-        Cancel
-      </button>
     </form>
   );
 };
 
-export default EditExpense;
+export default AddTransaction;

@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
-import Login from './Login';
-import ProtectedApp from './ProtectedApp';
-import ProtectedRoutes from './ProtectedRoutes';
-import SignUp from './SignUp';
+import Login from '../../components/Login';
+import ProtectedApp from '../../components/ProtectedApp';
+import ProtectedRoutes from '../../components/ProtectedRoutes';
+import SignUp from '../../components/SignUp';
 import axios from 'axios';
 
-const LandingPage = () => {
+const Home = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [userInfo, setUserInfo] = useState({});
@@ -74,4 +74,4 @@ const LandingPage = () => {
   );
 };
 
-export default LandingPage;
+export default Home;

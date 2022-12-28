@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import Nav from './Navbar';
-import AddTransaction from './AddTransaction';
+import AddTransaction from './add-transaction/add-transaction.component';
 import Expenses from './Expenses';
 import './ProtectedApp.css';
-import EditExpense from './EditExpense';
+import EditExpense from './add-transaction/edit-expense/edit-expense.component';
 import Overlay from './Overlay';
 
 const ProtectedApp = ({ username, password, userInfo }) => {
