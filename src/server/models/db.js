@@ -1,6 +1,6 @@
 const { Pool } = require('pg');
 require('dotenv').config();
-console.log(process.env);
+// console.log('here', process.env);
 const PG_URI = process.env.PG_URI;
 
 // Create a new connection using env URI stirng

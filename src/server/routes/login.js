@@ -6,7 +6,7 @@ const sessionController = require('../controllers/sessionController');
 router.post(
   '/authUser',
   loginController.authUser,
-  sessionController.isLoggedIn,
+  // sessionController.isLoggedIn,
   (req, res) => {
     return res.status(200).json(res.locals.auth);
   }

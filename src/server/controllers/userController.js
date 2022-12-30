@@ -1,5 +1,5 @@
-const express = require('express');
 const UserModel = require('../models/userModel');
+const db = require('../models/db');
 const bcrypt = require('bcrypt');
 
 const userController = {};
