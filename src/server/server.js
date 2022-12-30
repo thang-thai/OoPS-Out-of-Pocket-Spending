@@ -8,8 +8,8 @@ const PORT = process.env.PORT || 3000;
 const cookieParser = require('cookie-parser');
 
 // require Routers
-const apiRouter = require('./routes/api');
-const authRouter = require('./routes/auth');
+const apiRouter = require('./routes/apiRouter');
+const authRouter = require('./routes/authRouter');
 // const signupRouter = require('./routes/signup');
 
 // require Controllers

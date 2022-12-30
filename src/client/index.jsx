@@ -8,6 +8,7 @@ import {
   RouterProvider,
 } from 'react-router-dom';
 import ErrorPage from '../client/error-page';
+import { AuthProvider } from './contexts/auth.context';
 
 // const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -27,6 +28,8 @@ const router = createBrowserRouter(
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </React.StrictMode>
 );

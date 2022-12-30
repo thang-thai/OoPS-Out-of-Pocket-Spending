@@ -1,5 +1,5 @@
-const UserModel = require('../models/userModel');
-const db = require('../models/db');
+const UserModel = require('../src/server/models/userModel');
+const db = require('../src/server/models/db');
 const bcrypt = require('bcrypt');
 
 const userController = {};

@@ -46,7 +46,7 @@ const Login = ({
         <button
           className="login-btn"
           onClick={() => {
-            useAuth();
+            handleAuth();
             setUsername('');
             setPassword('');
           }}

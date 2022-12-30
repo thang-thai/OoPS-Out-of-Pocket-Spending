@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { AuthProvider } from '../../contexts/auth.context';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import Login from '../../components/login/login.component';
-// import ProtectedRoutes from '../../components/ProtectedRoutes';
 import SignUp from '../../components/sign-up/sign-up.component';
 import axios from 'axios';
+// import ProtectedRoutes from '../../components/ProtectedRoutes';
 
 const Landing = () => {
+  // const { currentUser, setCurrentUser } = useContext(AuthProvider);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [userInfo, setUserInfo] = useState({});
@@ -22,8 +24,14 @@ const Landing = () => {
     navigate(path);
   };
 
+  const handleAuth = async () => {
+    const res = await axios.post('/auth/verifyUser', { username, password });
+    console.log('res', res);
+  };
+
   const useAuth = () => {
-    axios.post('/login/authUser', { username, password }).then(res => {
+    console.log('here');
+    axios.post('/auth/verifyUser', { username, password }).then(res => {
       if (res.data === false) {
         console.log('INSIDE');
         setUserExists(false);
@@ -52,6 +60,7 @@ const Landing = () => {
             setPassword={setPassword}
             homeRoute={homeRoute}
             useAuth={useAuth}
+            handleAuth={handleAuth}
             signupRoute={signupRoute}
           />
         }

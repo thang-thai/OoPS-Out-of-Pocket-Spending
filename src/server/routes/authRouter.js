@@ -7,7 +7,7 @@ const cookieController = require('../controllers/cookieController');
 
 // Verify if user exists
 router.post(
-  '/verify-user',
+  '/verifyUser',
   authController.verifyUser,
   // sessionController.isLoggedIn,
   (req, res) => {
@@ -17,7 +17,7 @@ router.post(
 
 // Add new user to DB
 router.post(
-  '/add-user',
+  '/addUser',
   authController.addUser,
   cookieController.setSSIDCookie,
   sessionController.startSession,
