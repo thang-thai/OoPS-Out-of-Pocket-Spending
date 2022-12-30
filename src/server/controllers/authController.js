@@ -2,9 +2,9 @@ const UserModel = require('../models/userModel');
 const bcrypt = require('bcrypt');
 const db = require('../models/db');
 
-const loginController = {};
+const authController = {};
 
-loginController.authUser = async (req, res, next) => {
+authController.verifyUser = async (req, res, next) => {
   const { username, password } = req.body;
   try {
     const query = `SELECT * FROM users WHERE users.username = $1 AND users.password = $2`;
@@ -31,10 +31,34 @@ loginController.authUser = async (req, res, next) => {
     // }
   } catch (error) {
     return next({
-      log: 'ERROR: Error in loginController.authUser',
-      msg: { err: 'ERROR: Error in loginController.authUser' },
+      log: 'ERROR: Error in authController.verifyUser',
+      msg: { err: 'ERROR: Error in authController.verifyUser' },
     });
   }
 };
 
-module.exports = loginController;
+authController.addUser = (req, res, next) => {
+  const { firstName, lastName, username, password } = req.body;
+
+  const saltRounds = 10;
+  bcrypt.hash(password, saltRounds).then(async hash => {
+    try {
+      const data = await UserModel.create({
+        firstName,
+        lastName,
+        username,
+        password: hash,
+      });
+
+      res.locals.data = data;
+      return next();
+    } catch (error) {
+      return next({
+        log: 'ERROR: Error in authController.addUser',
+        msg: { err: 'ERROR: Error in authController.addUser' },
+      });
+    }
+  });
+};
+
+module.exports = authController;

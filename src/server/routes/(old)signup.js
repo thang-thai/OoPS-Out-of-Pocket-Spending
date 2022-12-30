@@ -1,7 +1,7 @@
 const express = require('express');
 const UserModel = require('../models/userModel');
 const router = express.Router();
-const userController = require('../controllers/userController');
+const userController = require('../controllers/(old)userController');
 const cookieController = require('../controllers/cookieController');
 const sessionController = require('../controllers/sessionController');
 

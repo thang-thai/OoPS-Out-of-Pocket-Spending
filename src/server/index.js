@@ -9,8 +9,8 @@ const cookieParser = require('cookie-parser');
 
 // require Routers
 const apiRouter = require('./routes/api');
-const signupRouter = require('./routes/signup');
-const loginRouter = require('./routes/login');
+const authRouter = require('./routes/auth');
+// const signupRouter = require('./routes/signup');
 
 // require Controllers
 const cookieController = require('./controllers/cookieController');
@@ -39,8 +39,9 @@ app.use(express.static(path.resolve(__dirname, '../../dist')));
 
 // Routes
 app.use('/api', apiRouter);
-app.use('/signup', signupRouter);
-app.use('/login', loginRouter);
+// app.use('/signup', signupRouter);
+// app.use('/login', loginRouter);
+app.use('/auth', authRouter);
 
 // Route for main app
 app.get('/', cookieController.setCookie, (req, res) => {
