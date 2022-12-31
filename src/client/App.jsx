@@ -1,11 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import Landing from './routes/landing/landing.component';
-import {
-  createBrowserRouter,
-  createRoutesFromElements,
-  RouterProvider,
-} from 'react-router-dom';
+import { createBrowserRouter, createRoutesFromElements, RouterProvider } from 'react-router-dom';
 import ErrorPage from '../client/error-page';
 import { AuthProvider } from './contexts/auth.context';
 import SignUp from './components/sign-up/sign-up.component';

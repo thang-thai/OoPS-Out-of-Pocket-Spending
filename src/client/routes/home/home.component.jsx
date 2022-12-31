@@ -30,9 +30,7 @@ const Home = ({ username, password, userInfo }) => {
   };
 
   const calculateTotal = () => {
-    const total = expensesList
-      .filter(expense => expense.userId === userId)
-      .reduce((acc, curr) => (acc += curr.amount), 0);
+    const total = expensesList.filter(expense => expense.userId === userId).reduce((acc, curr) => (acc += curr.amount), 0);
     setTotalExpenses(total);
   };
 
@@ -55,32 +53,12 @@ const Home = ({ username, password, userInfo }) => {
         <Nav userInfo={userInfo} totalExpenses={totalExpenses} />
       </header>
       <main className="main-container">
-        <div className="edit-modal">
-          {openModal ? (
-            <EditExpense
-              closeModal={closeModal}
-              editId={editId}
-              expensesList={expensesList}
-              setExpensesList={setExpensesList}
-              currItem={currItem}
-            />
-          ) : null}
-        </div>
+        <div className="edit-modal">{openModal ? <EditExpense closeModal={closeModal} editId={editId} expensesList={expensesList} setExpensesList={setExpensesList} currItem={currItem} /> : null}</div>
         <section className="expenses">
-          <Expenses
-            expensesList={expensesList}
-            setExpensesList={setExpensesList}
-            handleEdit={handleEdit}
-            handleDelete={handleDelete}
-            userId={userId}
-          />
+          <Expenses expensesList={expensesList} setExpensesList={setExpensesList} handleEdit={handleEdit} handleDelete={handleDelete} userId={userId} />
         </section>
         <section className="add-transaction">
-          <AddTransaction
-            expensesList={expensesList}
-            setExpensesList={setExpensesList}
-            userInfo={userInfo}
-          />
+          <AddTransaction expensesList={expensesList} setExpensesList={setExpensesList} userInfo={userInfo} />
         </section>
       </main>
     </div>

@@ -63,6 +63,7 @@ button:focus {
   border-radius: 0.4rem;
   font-size: 1.4rem;
   font-weight: 700;
+  text-decoration: none;
 }
 
 .login-btn:hover,
