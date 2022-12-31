@@ -1,20 +1,46 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { AuthContext } from '../../contexts/auth.context';
 import { useNavigate } from 'react-router-dom';
 import './login.styles.css';
 
-const Login = ({
-  username,
-  setUsername,
-  password,
-  setPassword,
-  homeRoute,
-  useAuth,
-  signupRoute,
-  userExists,
-  setUserExists,
-  handleAuth,
-}) => {
+const Login = () => {
+  const { currentUser, setCurrentUser } = useContext(AuthContext);
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  let navigate = useNavigate();
+  const homeRoute = () => {
+    let path = '/home';
+    navigate(path);
+  };
+
+  const signupRoute = () => {
+    let path = '/signup';
+    navigate(path);
+  };
+
+  const handleLogin = async () => {
+    try {
+      const res = await axios.post('/auth/verifyUser', { username, password });
+      if (res) {
+        const {
+          user_id: id,
+          first_name: firstName,
+          last_name: lastName,
+        } = res.data;
+        setCurrentUser({ id, firstName, lastName });
+        homeRoute();
+      } else {
+        setUsername('');
+        setPassword('');
+      }
+    } catch (error) {
+      // add better error handling
+      console.log(error);
+    }
+  };
+
   return (
     <div className="login">
       <img
@@ -39,15 +65,15 @@ const Login = ({
           placeholder="Password"
         ></input>
         <br />
-        {!userExists ? (
+        {/* {!currentUser ? (
           <p className="login-failed">
             Username or password incorrect, try again or sign up!
           </p>
-        ) : null}
+        ) : null} */}
         <button
           className="login-btn"
           onClick={() => {
-            handleAuth();
+            handleLogin();
             setUsername('');
             setPassword('');
           }}
