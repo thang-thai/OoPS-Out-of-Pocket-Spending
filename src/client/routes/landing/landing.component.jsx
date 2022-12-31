@@ -4,6 +4,7 @@ import { Routes, Route, useNavigate } from 'react-router-dom';
 import Login from '../../components/login/login.component';
 import SignUp from '../../components/sign-up/sign-up.component';
 import axios from 'axios';
+import Home from '../home/home.component';
 // import ProtectedRoutes from '../../components/ProtectedRoutes';
 
 const Landing = () => {
@@ -25,12 +26,30 @@ const Landing = () => {
   };
 
   const handleAuth = async () => {
-    const res = await axios.post('/auth/verifyUser', { username, password });
-    console.log('res', res);
+    try {
+      const res = await axios.post('/auth/verifyUser', { username, password });
+      if (res) {
+        console.log(res.data);
+        const {
+          user_id: id,
+          first_name: firstName,
+          last_name: lastName,
+        } = res.data;
+        setUserInfo({ id, firstName, lastName });
+        setUserExists(true);
+        homeRoute();
+      } else {
+        setUserExists(false);
+        setUsername('');
+        setPassword('');
+      }
+    } catch (error) {
+      // add better error handling
+      console.log(error);
+    }
   };
 
   const useAuth = () => {
-    console.log('here');
     axios.post('/auth/verifyUser', { username, password }).then(res => {
       if (res.data === false) {
         console.log('INSIDE');
@@ -66,14 +85,12 @@ const Landing = () => {
         }
       />
       <Route path="/signup" element={<SignUp />} />
-      {/* <Route element={<ProtectedRoutes />}>
-        <Route
-          path="/home"
-          element={
-            <Home username={username} password={password} userInfo={userInfo} />
-          }
-        />
-      </Route> */}
+      <Route
+        path="/home"
+        element={
+          <Home username={username} password={password} userInfo={userInfo} />
+        }
+      />
     </Routes>
   );
 };

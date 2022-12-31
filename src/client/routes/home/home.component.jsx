@@ -16,7 +16,7 @@ const Home = ({ username, password, userInfo }) => {
   // const [sortedTransactions, setSortedTransactions] = useState([
   //   ...expensesList,
   // ]);
-  const { id: userId } = userInfo;
+  // const { id: userId } = userInfo;
 
   const handleEdit = (e, id) => {
     const expense = expensesList.filter(expense => expense._id === id);
@@ -47,7 +47,7 @@ const Home = ({ username, password, userInfo }) => {
         calculateTotal();
       })
       .catch(err => console.log(err));
-  });
+  }, []);
   return (
     <div>
       {openModal ? <Overlay /> : null};

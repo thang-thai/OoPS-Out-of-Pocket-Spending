@@ -13,6 +13,7 @@ const Login = ({
   signupRoute,
   userExists,
   setUserExists,
+  handleAuth,
 }) => {
   return (
     <div className="login">
