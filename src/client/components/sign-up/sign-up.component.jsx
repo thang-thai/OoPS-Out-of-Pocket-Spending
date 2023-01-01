@@ -24,7 +24,7 @@ const SignUp = () => {
 
   const [formFields, setFormFields] = useState(defaultFormFields);
   const [pwMatched, setPwMatched] = useState(true);
-  const [userCreated, setUserCreated] = useState(false);
+  // const [userCreated, setUserCreated] = useState(false);
 
   const { email, firstName, lastName, username, password, confirmedPassword } = formFields;
 
@@ -49,8 +49,12 @@ const SignUp = () => {
     setPwMatched(true);
 
     const res = await axios.post('/auth/addUser', { email, firstName, lastName, username, password });
+    if (res) {
+      const { user_id: id, first_name: firstName, last_name: lastName } = res;
+      setCurrentUser({ id, firstName, lastName });
+    }
 
-    // setFormFields(defaultFormFields);
+    setFormFields(defaultFormFields);
     // setUserCreated(true);
   };
 
@@ -65,33 +69,24 @@ const SignUp = () => {
     <div className="signup">
       <img className="logo-signup" src={require('../../../images/oops.png').default}></img>
       <div className="signup-container">
-        {/* Remove the ternary and directly send them to the home page */}
-        <h1 className="welcome">{!userCreated ? 'Almost there!' : 'Sign Up Complete!'}</h1>
-        <p className="sub-heading">{!userCreated ? 'Enter your info below to start tracking' : null}</p>
-        {!userCreated ? (
-          <>
-            <form className="signup-form">
-              <input className="input-login" name="firstName" value={firstName} type="text" placeholder="First Name" onChange={handleChange} required></input>
-              <input className="input-login" name="lastName" value={lastName} type="text" placeholder="Last Name" onChange={handleChange} required></input>
-              <input className="input-login" name="email" value={email} type="email" placeholder="Email" onChange={handleChange} required></input>
-              <input className="input-login" name="username" value={username} type="text" placeholder="Username" onChange={handleChange} required></input>
-              <input className="input-login" name="password" value={password} type="password" placeholder="Password" onChange={handleChange} required></input>
-              <input className="input-login" name="confirmedPassword" value={confirmedPassword} type="password" placeholder="Confirm Password" onChange={handleChange} required></input>
+        <h1 className="welcome">Almost there!</h1>
+        <p className="sub-heading">Fill in your info below</p>
+        <form className="signup-form">
+          <input className="input-login" name="firstName" value={firstName} type="text" placeholder="First Name" onChange={handleChange} required></input>
+          <input className="input-login" name="lastName" value={lastName} type="text" placeholder="Last Name" onChange={handleChange} required></input>
+          <input className="input-login" name="email" value={email} type="email" placeholder="Email" onChange={handleChange} required></input>
+          <input className="input-login" name="username" value={username} type="text" placeholder="Username" onChange={handleChange} required></input>
+          <input className="input-login" name="password" value={password} type="password" placeholder="Password" onChange={handleChange} required></input>
+          <input className="input-login" name="confirmedPassword" value={confirmedPassword} type="password" placeholder="Confirm Password" onChange={handleChange} required></input>
 
-              {!pwMatched ? <p className="pw-failed">Try again, passwords do not match!</p> : null}
-              <button className="confirm-btn" onClick={handleSubmit}>
-                Confirm
-              </button>
-              <NavLink to="/" className="cancel-btn">
-                Cancel
-              </NavLink>
-            </form>
-          </>
-        ) : (
+          {!pwMatched ? <p className="pw-failed">Try again, passwords do not match!</p> : null}
+          <button className="confirm-btn" onClick={handleSubmit}>
+            Confirm
+          </button>
           <NavLink to="/" className="cancel-btn">
-            Click here to login
+            Cancel
           </NavLink>
-        )}
+        </form>
       </div>
     </div>
   );
