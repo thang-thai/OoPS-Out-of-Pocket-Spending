@@ -39,9 +39,9 @@ app.use(express.static(path.resolve(__dirname, '../../dist')));
 
 // Routes
 app.use('/api', apiRouter);
+app.use('/auth', authRouter);
 // app.use('/signup', signupRouter);
 // app.use('/login', loginRouter);
-app.use('/auth', authRouter);
 
 // Route for main app
 app.get('/', cookieController.setCookie, (req, res) => {

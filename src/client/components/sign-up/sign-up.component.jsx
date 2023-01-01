@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useState, useContext } from 'react';
 import { AuthContext } from '../../contexts/auth.context';
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import './sign-up.styles.css';
 
 const defaultFormFields = {
@@ -29,18 +29,10 @@ const SignUp = () => {
   const { email, firstName, lastName, username, password, confirmedPassword } = formFields;
 
   let navigate = useNavigate();
-  const loginRoute = () => {
+  const homeRoute = () => {
     let path = '/home';
     navigate(path);
   };
-
-  // const resetAllFields = () => {
-  //   setFirstName('');
-  //   setLastName('');
-  //   setUsername('');
-  //   setPassword('');
-  //   setConfirmedPassword('');
-  // };
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -48,19 +40,15 @@ const SignUp = () => {
   };
 
   // confirm that user is created then sign them in to home
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
     setFormFields({ ...formFields, password: '', confirmedPassword: '' });
-    setPwMatched(false);
     if (password !== confirmedPassword) {
       return setPwMatched(false);
     }
-    // setPwMatched(true);
+    setPwMatched(true);
 
-    // axios
-    //   .post('/signup/add-user', { firstName, lastName, username, password })
-    //   .then(res => console.log(res))
-    //   .catch(err => console.log('ERROR ADDING USER', err));
+    const res = await axios.post('/auth/addUser', { email, firstName, lastName, username, password });
 
     // setFormFields(defaultFormFields);
     // setUserCreated(true);
@@ -94,15 +82,15 @@ const SignUp = () => {
               <button className="confirm-btn" onClick={handleSubmit}>
                 Confirm
               </button>
-              <button className="cancel-btn" onClick={loginRoute}>
+              <NavLink to="/" className="cancel-btn">
                 Cancel
-              </button>
+              </NavLink>
             </form>
           </>
         ) : (
-          <button className="cancel-btn" onClick={loginRoute}>
+          <NavLink to="/" className="cancel-btn">
             Click here to login
-          </button>
+          </NavLink>
         )}
       </div>
     </div>

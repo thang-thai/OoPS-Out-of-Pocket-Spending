@@ -18,11 +18,12 @@ router.post(
 // Add new user to DB
 router.post(
   '/addUser',
+  authController.verifyUser,
   authController.addUser,
-  cookieController.setSSIDCookie,
-  sessionController.startSession,
+  // cookieController.setSSIDCookie,
+  // sessionController.startSession,
   (req, res) => {
-    return res.status(200).json(res.locals.data);
+    return res.status(200).json(res.locals.auth);
   }
 );
 
