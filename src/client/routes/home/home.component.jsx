@@ -4,6 +4,7 @@ import AddTransaction from '../../components/add-transaction/add-transaction.com
 import Expenses from '../../components/expenses/expenses.component';
 import EditExpense from '../../components/edit-expense/edit-expense.component';
 import Nav from '../../components/navbar/navbar.component.jsx';
+import SideBar from '../../components/sidebar/sidebar.component.jsx';
 import Overlay from '../../components/overlay/overlay.component';
 import axios from 'axios';
 import './home.styles.css';
@@ -54,9 +55,10 @@ const Home = () => {
   return (
     <div>
       {/* {openModal ? <Overlay /> : null}; */}
-      <header>
+      {/* <header>
         <Nav />
-      </header>
+      </header> */}
+      <SideBar />
       <main className="main-container">
         {/* <div className="edit-modal">{openModal ? <EditExpense closeModal={closeModal} editId={editId} expensesList={expensesList} setExpensesList={setExpensesList} currItem={currItem} /> : null}</div> */}
         {/* <section className="expenses">
