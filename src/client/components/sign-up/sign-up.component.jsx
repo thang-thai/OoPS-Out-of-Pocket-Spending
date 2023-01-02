@@ -14,17 +14,9 @@ const defaultFormFields = {
 };
 
 const SignUp = () => {
-  // const [firstName, setFirstName] = useState('');
-  // const [lastName, setLastName] = useState('');
-  // const [username, setUsername] = useState('');
-  // const [password, setPassword] = useState('');
-  // const [email, setEmail] = useState('');
-  // const [confirmedPassword, setConfirmedPassword] = useState('');
   const { currentUser, setCurrentUser } = useContext(AuthContext);
-
   const [formFields, setFormFields] = useState(defaultFormFields);
   const [pwMatched, setPwMatched] = useState(true);
-  // const [userCreated, setUserCreated] = useState(false);
 
   const { email, firstName, lastName, username, password, confirmedPassword } = formFields;
 
@@ -65,13 +57,6 @@ const SignUp = () => {
     }
   };
 
-  // const handleSubmit = e => {
-  //   e.preventDefault();
-  //   setPassword('');
-  //   setConfirmedPassword('');
-  //   passwordMatch();
-  // };
-
   return (
     <div className="signup-component">
       <img className="logo-signup" src={require('../../../images/oops.png').default} onClick={landingRoute}></img>
@@ -87,7 +72,6 @@ const SignUp = () => {
             <input className="input-login" name="username" value={username} type="text" placeholder="Username" onChange={handleChange} required></input>
             <input className="input-login" name="password" value={password} type="password" placeholder="Password" onChange={handleChange} required></input>
             <input className="input-login" name="confirmedPassword" value={confirmedPassword} type="password" placeholder="Confirm Password" onChange={handleChange} required></input>
-
             <button className="confirm-btn" onClick={handleSubmit}>
               Confirm
             </button>

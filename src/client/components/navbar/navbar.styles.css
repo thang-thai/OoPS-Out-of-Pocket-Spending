@@ -32,19 +32,18 @@
   left: 2rem;
 }
 
-.logo-name {
+/* .logo-name {
   font-size: 1.2rem;
-  position: absolute;
+  /* position: absolute;
   top: 30%;
-  left: 7.5%;
-  color: #e7f8f6;
+  left: 7.5%; */
+/* color: #e7f8f6;
   font-weight: 700;
   letter-spacing: 0.2rem;
   line-height: 1;
   font-family: 'Fredoka One', sans-serif;
-}
-
-.total {
+} */
+*/ .total {
   font-weight: 700;
   font-size: 1.8rem;
   background-color: #cef1edd6;

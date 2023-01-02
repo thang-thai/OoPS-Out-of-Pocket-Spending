@@ -1,18 +1,23 @@
-import React, { useState, useEffect, useRef } from 'react';
-import axios from 'axios';
-import Nav from '../../components/navbar/navbar.component.jsx';
+import React, { useState, useEffect, useContext } from 'react';
+import { AuthContext } from '../../contexts/auth.context.jsx';
 import AddTransaction from '../../components/add-transaction/add-transaction.component';
 import Expenses from '../../components/expenses/expenses.component';
-import './home.styles.css';
 import EditExpense from '../../components/edit-expense/edit-expense.component';
+import Nav from '../../components/navbar/navbar.component.jsx';
 import Overlay from '../../components/overlay/overlay.component';
+import axios from 'axios';
+import './home.styles.css';
 
-const Home = ({ username, password, userInfo }) => {
-  const [totalExpenses, setTotalExpenses] = useState(0);
-  const [expensesList, setExpensesList] = useState([]);
-  const [openModal, setOpenModal] = useState(false);
-  const [editId, setEditId] = useState('');
-  const [currItem, setCurrItem] = useState([]);
+const Home = () => {
+  // const [totalExpenses, setTotalExpenses] = useState(0);
+  // const [expensesList, setExpensesList] = useState([]);
+  // const [openModal, setOpenModal] = useState(false);
+  // const [editId, setEditId] = useState('');
+  // const [currItem, setCurrItem] = useState([]);
+  const { currentUser, setCurrentUser } = useContext(AuthContext);
+  console.log(currentUser);
+  // const { id, firstName, lastName } = currentUser;
+
   // const [sortedTransactions, setSortedTransactions] = useState([
   //   ...expensesList,
   // ]);
@@ -37,31 +42,59 @@ const Home = ({ username, password, userInfo }) => {
   const closeModal = () => setOpenModal(false);
 
   // Render all current expenses on load
-  useEffect(() => {
-    axios
-      .get('/api/get-expenses')
-      .then(res => {
-        setExpensesList([...res.data]);
-        calculateTotal();
-      })
-      .catch(err => console.log(err));
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get('/api/get-expenses')
+  //     .then(res => {
+  //       setExpensesList([...res.data]);
+  //       calculateTotal();
+  //     })
+  //     .catch(err => console.log(err));
+  // }, []);
   return (
     <div>
-      {openModal ? <Overlay /> : null};
+      {/* {openModal ? <Overlay /> : null}; */}
       <header>
-        <Nav userInfo={userInfo} totalExpenses={totalExpenses} />
+        <Nav />
       </header>
       <main className="main-container">
-        <div className="edit-modal">{openModal ? <EditExpense closeModal={closeModal} editId={editId} expensesList={expensesList} setExpensesList={setExpensesList} currItem={currItem} /> : null}</div>
-        <section className="expenses">
-          <Expenses expensesList={expensesList} setExpensesList={setExpensesList} handleEdit={handleEdit} handleDelete={handleDelete} userId={userId} />
+        {/* <div className="edit-modal">{openModal ? <EditExpense closeModal={closeModal} editId={editId} expensesList={expensesList} setExpensesList={setExpensesList} currItem={currItem} /> : null}</div> */}
+        {/* <section className="expenses">
+          <Expenses
+            expensesList={expensesList}
+            setExpensesList={setExpensesList}
+            handleEdit={handleEdit}
+            handleDelete={handleDelete}
+            // userId={userId}
+          />
         </section>
         <section className="add-transaction">
-          <AddTransaction expensesList={expensesList} setExpensesList={setExpensesList} userInfo={userInfo} />
-        </section>
+          <AddTransaction expensesList={expensesList} setExpensesList={setExpensesList} />
+        </section> */}
       </main>
     </div>
+
+    // <div>
+    //   {openModal ? <Overlay /> : null};
+    //   <header>
+    //     <Nav totalExpenses={totalExpenses} />
+    //   </header>
+    //   <main className="main-container">
+    //     <div className="edit-modal">{openModal ? <EditExpense closeModal={closeModal} editId={editId} expensesList={expensesList} setExpensesList={setExpensesList} currItem={currItem} /> : null}</div>
+    //     <section className="expenses">
+    //       <Expenses
+    //         expensesList={expensesList}
+    //         setExpensesList={setExpensesList}
+    //         handleEdit={handleEdit}
+    //         handleDelete={handleDelete}
+    //         // userId={userId}
+    //       />
+    //     </section>
+    //     <section className="add-transaction">
+    //       <AddTransaction expensesList={expensesList} setExpensesList={setExpensesList} />
+    //     </section>
+    //   </main>
+    // </div>
   );
 };
 
