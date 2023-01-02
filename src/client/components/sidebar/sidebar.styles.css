@@ -1,4 +1,19 @@
 .sidebar-container {
   min-width: 10rem;
   min-height: 100vh;
+  padding: 2rem;
+  /* border-right: 10px solid red; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebar-links {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-bottom: 40rem;
+  color: #077064;
+  cursor: pointer;
 }
