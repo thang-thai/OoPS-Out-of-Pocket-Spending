@@ -3,19 +3,19 @@ const apiController = require('../controllers/apiController');
 const router = express.Router();
 
 // Add transaction route
-router.get('/get-expenses', apiController.getExpenses, (req, res) => {
+router.post('/getExpenses/:id', apiController.getExpenses, (req, res) => {
   return res.status(200).json(res.locals.expenses);
 });
 
-router.post('/add-expense', apiController.addExpense, (req, res) => {
+router.post('/addExpense', apiController.addExpense, (req, res) => {
   return res.status(200).json(res.locals.data);
 });
 
-router.put('/update-expense', apiController.updateExpense, (req, res) => {
+router.put('/updateExpense', apiController.updateExpense, (req, res) => {
   return res.status(200).json(res.locals.data);
 });
 
-router.delete('/delete-expense', apiController.deleteExpense, (req, res) => {
+router.delete('/deleteExpense', apiController.deleteExpense, (req, res) => {
   return res.status(200).json('Expense Deleted');
 });
 

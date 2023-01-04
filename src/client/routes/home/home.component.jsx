@@ -8,16 +8,18 @@ import SideBar from '../../components/sidebar/sidebar.component.jsx';
 import Overlay from '../../components/overlay/overlay.component';
 import axios from 'axios';
 import './home.styles.css';
+import { ExpensesContext } from '../../contexts/expenses.context.jsx';
 
 const Home = () => {
   // const [totalExpenses, setTotalExpenses] = useState(0);
   // const [expensesList, setExpensesList] = useState([]);
-  const [openModal, setOpenModal] = useState(false);
   // const [editId, setEditId] = useState('');
   // const [currItem, setCurrItem] = useState([]);
-  const { currentUser, setCurrentUser } = useContext(AuthContext);
-  console.log(currentUser);
   // const { id, firstName, lastName } = currentUser;
+  const [openModal, setOpenModal] = useState(false);
+  const { currentUser, setCurrentUser } = useContext(AuthContext);
+  const { expensesList, setExpensesList } = useContext(ExpensesContext);
+  const { id } = currentUser;
 
   // const [sortedTransactions, setSortedTransactions] = useState([
   //   ...expensesList,
@@ -43,23 +45,26 @@ const Home = () => {
   const closeModal = () => setOpenModal(false);
 
   // Render all current expenses on load
-  // useEffect(() => {
-  //   axios
-  //     .get('/api/get-expenses')
-  //     .then(res => {
-  //       setExpensesList([...res.data]);
-  //       calculateTotal();
-  //     })
-  //     .catch(err => console.log(err));
-  // }, []);
+  useEffect(() => {
+    const getExpenses = async () => {
+      axios
+        .post(`/api/getExpenses/${id}`)
+        .then(res => {
+          setExpensesList([...res.data]);
+          // calculateTotal();
+        })
+        .catch(err => console.log(err));
+    };
+    getExpenses();
+  }, []);
   return (
     <div>
       {openModal ? <Overlay /> : null};
       <Nav />
       <main className="main-container">
-        <div className="edit-modal">{openModal ? <EditExpense closeModal={closeModal} editId={editId} expensesList={expensesList} setExpensesList={setExpensesList} currItem={currItem} /> : null}</div>
+        <div className="edit-modal">{openModal ? <EditExpense closeModal={closeModal} editId={editId} currItem={currItem} /> : null}</div>
         <section className="expenses">
-          <Expenses expensesList={expensesList} setExpensesList={setExpensesList} handleEdit={handleEdit} handleDelete={handleDelete} />
+          <Expenses handleEdit={handleEdit} handleDelete={handleDelete} />
         </section>
         {/* <section className="add-transaction">
           <AddTransaction expensesList={expensesList} setExpensesList={setExpensesList} />

@@ -9,7 +9,6 @@ export const AuthContext = createContext({
 export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState({ id: 123 });
   const value = { currentUser, setCurrentUser };
-  console.log('RENDERED', currentUser);
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };

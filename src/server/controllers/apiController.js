@@ -1,10 +1,15 @@
 const apiController = {};
 const TransactionModel = require('../models/transactionModel');
+const db = require('../models/db');
 
 apiController.getExpenses = async (req, res, next) => {
+  const { id } = req.params;
   try {
-    const data = await TransactionModel.find({});
-    res.locals.expenses = data;
+    const query = `SELECT e.expense_id, e.expense_name, e.amount, e.category, e.date from expenses AS e LEFT JOIN users AS u ON u.user_id = e.user_id WHERE u.user_id = $1;`;
+    const values = [id];
+    const data = await db.query(query, values);
+
+    res.locals.expenses = data.rows;
     return next();
   } catch (error) {
     return next({
@@ -37,10 +42,7 @@ apiController.addExpense = async (req, res, next) => {
 apiController.updateExpense = async (req, res, next) => {
   const { expense, amount, category, date, editId } = req.body;
   try {
-    const data = await TransactionModel.findByIdAndUpdate(
-      { _id: editId },
-      { expense, amount, category, date }
-    );
+    const data = await TransactionModel.findByIdAndUpdate({ _id: editId }, { expense, amount, category, date });
     res.locals.data = data;
     return next();
   } catch (error) {
