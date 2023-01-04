@@ -12,7 +12,7 @@ import './home.styles.css';
 const Home = () => {
   // const [totalExpenses, setTotalExpenses] = useState(0);
   // const [expensesList, setExpensesList] = useState([]);
-  // const [openModal, setOpenModal] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
   // const [editId, setEditId] = useState('');
   // const [currItem, setCurrItem] = useState([]);
   const { currentUser, setCurrentUser } = useContext(AuthContext);
@@ -54,23 +54,14 @@ const Home = () => {
   // }, []);
   return (
     <div>
-      {/* {openModal ? <Overlay /> : null}; */}
-      {/* <header>
-        <Nav />
-      </header> */}
-      <SideBar />
+      {openModal ? <Overlay /> : null};
+      <Nav />
       <main className="main-container">
-        {/* <div className="edit-modal">{openModal ? <EditExpense closeModal={closeModal} editId={editId} expensesList={expensesList} setExpensesList={setExpensesList} currItem={currItem} /> : null}</div> */}
-        {/* <section className="expenses">
-          <Expenses
-            expensesList={expensesList}
-            setExpensesList={setExpensesList}
-            handleEdit={handleEdit}
-            handleDelete={handleDelete}
-            // userId={userId}
-          />
+        <div className="edit-modal">{openModal ? <EditExpense closeModal={closeModal} editId={editId} expensesList={expensesList} setExpensesList={setExpensesList} currItem={currItem} /> : null}</div>
+        <section className="expenses">
+          <Expenses expensesList={expensesList} setExpensesList={setExpensesList} handleEdit={handleEdit} handleDelete={handleDelete} />
         </section>
-        <section className="add-transaction">
+        {/* <section className="add-transaction">
           <AddTransaction expensesList={expensesList} setExpensesList={setExpensesList} />
         </section> */}
       </main>
