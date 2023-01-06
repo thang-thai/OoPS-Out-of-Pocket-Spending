@@ -70,9 +70,9 @@ const Home = () => {
         <section className="expenses">
           <Expenses handleEdit={handleEdit} handleDelete={handleDelete} />
         </section>
-        {/* <section className="add-transaction">
-          <AddTransaction expensesList={expensesList} setExpensesList={setExpensesList} />
-        </section> */}
+        <section className="add-transaction">
+          <AddTransaction />
+        </section>
       </main>
     </div>
 

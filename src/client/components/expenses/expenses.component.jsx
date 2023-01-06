@@ -9,11 +9,9 @@ const Expenses = ({ handleEdit, userId, handleDelete }) => {
   const sortAmount = () => {};
   const sortType = () => {};
 
-  const expenses = expensesList
-    .filter(expense => expense.userId === userId)
-    .map((expense, i) => {
-      return <Expense key={`${expense}${i}`} expensesList={expensesList} id={expense._id} amount={expense.amount} category={expense.category} date={expense.date} expense={expense.expense} handleEdit={handleEdit} handleDelete={handleDelete} />;
-    });
+  const expenses = expensesList.map(expense => {
+    return <Expense key={expense.expense_id} expense={expense} handleEdit={handleEdit} handleDelete={handleDelete} />;
+  });
   return (
     <div container="expenses">
       <table className="table-heading">
