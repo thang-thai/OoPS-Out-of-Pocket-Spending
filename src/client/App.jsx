@@ -4,6 +4,7 @@ import Landing from './routes/landing/landing.component';
 import { createBrowserRouter, createRoutesFromElements, RouterProvider } from 'react-router-dom';
 import ErrorPage from '../client/error-page';
 import { AuthProvider } from './contexts/auth.context';
+import { ExpensesProvider } from './contexts/expenses.context';
 import SignUp from './components/sign-up/sign-up.component';
 import Home from './routes/home/home.component';
 
@@ -28,7 +29,9 @@ const router = createBrowserRouter([
 const App = () => {
   return (
     <AuthProvider>
-      <RouterProvider router={router} />
+      <ExpensesProvider>
+        <RouterProvider router={router} />
+      </ExpensesProvider>
     </AuthProvider>
   );
 };
