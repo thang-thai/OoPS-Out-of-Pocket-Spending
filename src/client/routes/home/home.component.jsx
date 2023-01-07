@@ -18,7 +18,7 @@ const Home = () => {
   const [openModal, setOpenModal] = useState(false);
   const { currentUser, setCurrentUser } = useContext(AuthContext);
   const { expensesList, setExpensesList } = useContext(ExpensesContext);
-  const { id, firstName, lastName } = currentUser;
+  // const { id, firstName, lastName } = currentUser;
 
   // const [sortedTransactions, setSortedTransactions] = useState([
   //   ...expensesList,
@@ -32,7 +32,6 @@ const Home = () => {
   };
 
   const handleDelete = async (_, id) => {
-    console.log(id);
     try {
       const res = await axios.delete(`/api/deleteExpense/${id}`);
       if (res) {
@@ -48,15 +47,18 @@ const Home = () => {
   useEffect(() => {
     const getExpenses = async () => {
       try {
-        const res = await axios.post(`/api/getExpenses/${id}`);
-        setExpensesList(res.data);
-        // calculateTotal();
+        if (currentUser) {
+          console.log(currentUser, currentUser.id);
+          const res = await axios.post(`/api/getExpenses/${currentUser.id}`);
+          setExpensesList(res.data);
+        }
       } catch (error) {
         console.log(error);
       }
     };
     getExpenses();
-  }, []);
+  }, [currentUser]);
+
   return (
     <div>
       {openModal ? <Overlay /> : null};
@@ -71,28 +73,6 @@ const Home = () => {
         </section>
       </main>
     </div>
-
-    // <div>
-    //   {openModal ? <Overlay /> : null};
-    //   <header>
-    //     <Nav totalExpenses={totalExpenses} />
-    //   </header>
-    //   <main className="main-container">
-    //     <div className="edit-modal">{openModal ? <EditExpense closeModal={closeModal} editId={editId} expensesList={expensesList} setExpensesList={setExpensesList} currItem={currItem} /> : null}</div>
-    //     <section className="expenses">
-    //       <Expenses
-    //         expensesList={expensesList}
-    //         setExpensesList={setExpensesList}
-    //         handleEdit={handleEdit}
-    //         handleDelete={handleDelete}
-    //         // userId={userId}
-    //       />
-    //     </section>
-    //     <section className="add-transaction">
-    //       <AddTransaction expensesList={expensesList} setExpensesList={setExpensesList} />
-    //     </section>
-    //   </main>
-    // </div>
   );
 };
 

@@ -14,7 +14,6 @@ const defaultFormFields = {
 const AddTransaction = () => {
   const { currentUser } = useContext(AuthContext);
   const { expensesList, setExpensesList } = useContext(ExpensesContext);
-  const { id } = currentUser;
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { expense, amount, category, date } = formFields;
 
@@ -25,7 +24,7 @@ const AddTransaction = () => {
 
   const handleSubmit = async e => {
     e.preventDefault();
-    const res = await axios.post('/api/addExpense', { expense, amount, category, date, id });
+    const res = await axios.post('/api/addExpense', { expense, amount, category, date, id: currentUser.id });
     setExpensesList([...expensesList, res.data]);
     setFormFields(defaultFormFields);
   };
