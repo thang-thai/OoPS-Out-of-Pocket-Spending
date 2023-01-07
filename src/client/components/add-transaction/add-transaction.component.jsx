@@ -33,8 +33,8 @@ const AddTransaction = () => {
     e.preventDefault();
 
     // axios.post('/api/addExpense', { expense, amount, category, date });
-    const res = await axios.post('/api/add-expense', { expense, amount, category, date, id });
-
+    const res = await axios.post('/api/addExpense', { expense, amount, category, date, id });
+    // console.log(res);
     setExpensesList([...expensesList, res.data]);
 
     setFormFields(defaultFormFields);

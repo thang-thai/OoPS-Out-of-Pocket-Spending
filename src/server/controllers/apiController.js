@@ -20,16 +20,13 @@ apiController.getExpenses = async (req, res, next) => {
 };
 
 apiController.addExpense = async (req, res, next) => {
-  const { expense, amount, category, date, userId } = req.body;
+  const { expense, amount, category, date, id } = req.body;
+  console.log(expense, amount, category, date, id);
   try {
-    const data = await TransactionModel.create({
-      expense,
-      amount,
-      category,
-      date,
-      userId,
-    });
-    res.locals.data = data;
+    const query = `INSERT INTO expenses (expense_name, amount, category, "date", user_id) VALUES ($1, $2, $3, $4, $5) RETURNING *`;
+    const values = [expense, amount, category, date, id];
+    const data = await db.query(query, values);
+    res.locals.data = data.rows[0];
     return next();
   } catch (error) {
     return next({
