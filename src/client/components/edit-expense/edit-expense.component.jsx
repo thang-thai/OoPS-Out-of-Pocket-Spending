@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { ExpensesContext } from '../../contexts/expenses.context';
 import axios from 'axios';
 import './edit-expense.styles.css';
-const Transaction = require('../../../server/models/transactionModel');
 
 const defaultFormFields = {
   expense: '',
@@ -10,22 +10,10 @@ const defaultFormFields = {
   date: '',
 };
 
-const EditExpense = ({ closeModal, editId, expensesList, setExpensesList, currItem }) => {
+const EditExpense = ({ closeModal, editId }) => {
+  const { expensesList, setExpensesList } = useContext(ExpensesContext);
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { expense, amount, category, date } = formFields;
-  // const [expense, setExpense] = useState('');
-  // const [amount, setAmount] = useState('');
-  // const [category, setCategory] = useState('');
-  // const [date, setDate] = useState('');
-
-  // const {
-  //   expense: currExpense,
-  //   amount: currAmount,
-  //   category: currCategory,
-  //   date: currDate,
-  // } = currItem[0];
-
-  // console.log('CURR EXPENSE:', currExpense);
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -38,21 +26,10 @@ const EditExpense = ({ closeModal, editId, expensesList, setExpensesList, currIt
 
   const handleSubmit = async e => {
     e.preventDefault();
-    const res = await axios
-      .put(`/api/updateExpense/`, { expense, amount, category, date, editId })
-
-      .then(res => {
-        axios.get('/api/get-expenses').then(res => {
-          setExpensesList([...res.data]);
-        });
-      });
+    const res = await axios.put(`/api/updateExpense/`, { expense, amount, category, date, editId });
+    const updatedExpenses = expensesList.filter(expense => expense.expense_id != editId);
+    setExpensesList([...updatedExpenses, res.data]);
     closeModal();
-
-    // Reset values
-    // setExpense('');
-    // setAmount('');
-    // setCategory('');
-    // setDate('');
   };
 
   return (
