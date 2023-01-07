@@ -17,12 +17,6 @@ const AddTransaction = () => {
   const { id } = currentUser;
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { expense, amount, category, date } = formFields;
-  // const [expense, setExpense] = useState('');
-  // const [amount, setAmount] = useState('');
-  // const [category, setCategory] = useState('');
-  // const [date, setDate] = useState('');
-
-  // const { id: userId } = userInfo;
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -31,19 +25,9 @@ const AddTransaction = () => {
 
   const handleSubmit = async e => {
     e.preventDefault();
-
-    // axios.post('/api/addExpense', { expense, amount, category, date });
     const res = await axios.post('/api/addExpense', { expense, amount, category, date, id });
-    // console.log(res);
     setExpensesList([...expensesList, res.data]);
-
     setFormFields(defaultFormFields);
-
-    // Reset values
-    // setExpense('');
-    // setAmount('');
-    // setCategory('');
-    // setDate('');
   };
 
   return (
