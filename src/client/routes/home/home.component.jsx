@@ -4,7 +4,7 @@ import AddTransaction from '../../components/add-transaction/add-transaction.com
 import Expenses from '../../components/expenses/expenses.component';
 import EditExpense from '../../components/edit-expense/edit-expense.component';
 import Nav from '../../components/navbar/navbar.component.jsx';
-import Overlay from '../../../../archived/overlay/overlay.component';
+import Overlay from '../../components/overlay/overlay.component';
 import axios from 'axios';
 import './home.styles.css';
 import { ExpensesContext } from '../../contexts/expenses.context.jsx';
@@ -12,18 +12,17 @@ import { ExpensesContext } from '../../contexts/expenses.context.jsx';
 const Home = () => {
   // const [totalExpenses, setTotalExpenses] = useState(0);
   // const [expensesList, setExpensesList] = useState([]);
-  // const [editId, setEditId] = useState('');
-  // const [currItem, setCurrItem] = useState([]);
   // const { id, firstName, lastName } = currentUser;
+  const [editId, setEditId] = useState('');
+  const [currItem, setCurrItem] = useState([]);
   const [openModal, setOpenModal] = useState(false);
   const { currentUser, setCurrentUser } = useContext(AuthContext);
   const { expensesList, setExpensesList } = useContext(ExpensesContext);
-  const { id } = currentUser;
+  const { id, firstName, lastName } = currentUser;
 
   // const [sortedTransactions, setSortedTransactions] = useState([
   //   ...expensesList,
   // ]);
-  // const { id: userId } = userInfo;
 
   const handleEdit = (e, id) => {
     const expense = expensesList.filter(expense => expense._id === id);
@@ -45,19 +44,14 @@ const Home = () => {
 
   // Render all current expenses on load
   useEffect(() => {
-    console.log('useeffect');
-    console.log('id', currentUser, id);
     const getExpenses = async () => {
       try {
         const res = await axios.post(`/api/getExpenses/${id}`);
-        console.log(res.data);
         setExpensesList(res.data);
         // calculateTotal();
       } catch (error) {
         console.log(error);
       }
-      // .then(res => {
-      //   setExpensesList([...res.data]);
     };
     getExpenses();
   }, []);

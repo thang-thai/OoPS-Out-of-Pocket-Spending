@@ -39,8 +39,12 @@ apiController.addExpense = async (req, res, next) => {
 apiController.updateExpense = async (req, res, next) => {
   const { expense, amount, category, date, editId } = req.body;
   try {
-    const data = await TransactionModel.findByIdAndUpdate({ _id: editId }, { expense, amount, category, date });
-    res.locals.data = data;
+    // const data = await TransactionModel.findByIdAndUpdate({ _id: editId }, { expense, amount, category, date });
+    const query = `UPDATE expenses SET expense_name = $1, amount = $2, category = $3, "date" = $4 WHERE expense_id = $5 RETURNING *`;
+    const values = [expense, amount, category, date, editId];
+    const data = await db.query(query, values);
+    // console.log(data.rows[0]);
+    res.locals.data = data.rows[0];
     return next();
   } catch (error) {
     return next({
