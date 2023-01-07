@@ -1,5 +1,4 @@
 const apiController = {};
-const TransactionModel = require('../models/transactionModel');
 const db = require('../models/db');
 
 apiController.getExpenses = async (req, res, next) => {
@@ -52,9 +51,12 @@ apiController.updateExpense = async (req, res, next) => {
 };
 
 apiController.deleteExpense = async (req, res, next) => {
-  const { data: id } = req.body;
+  const { id } = req.params;
   try {
-    await TransactionModel.findByIdAndDelete({ _id: id });
+    const query = `DELETE FROM expenses WHERE expense_id = $1`;
+    const values = [id];
+    const data = await db.query(query, values);
+    res.locals.data = data.rowCount;
     return next();
   } catch (error) {
     return next({

@@ -15,8 +15,8 @@ router.put('/updateExpense', apiController.updateExpense, (req, res) => {
   return res.status(200).json(res.locals.data);
 });
 
-router.delete('/deleteExpense', apiController.deleteExpense, (req, res) => {
-  return res.status(200).json('Expense Deleted');
+router.delete('/deleteExpense/:id', apiController.deleteExpense, (req, res) => {
+  return res.status(200).json(res.locals.data);
 });
 
 module.exports = router;

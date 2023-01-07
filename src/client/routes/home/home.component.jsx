@@ -32,7 +32,7 @@ const Home = () => {
   };
 
   const handleDelete = (e, id) => {
-    axios.delete('/api/delete-expense', { data: { data: id } });
+    axios.delete(`/api/deleteExpense/${id}`);
   };
 
   const calculateTotal = () => {

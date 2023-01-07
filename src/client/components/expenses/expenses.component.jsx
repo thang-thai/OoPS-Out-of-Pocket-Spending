@@ -9,9 +9,11 @@ const Expenses = ({ handleEdit, userId, handleDelete }) => {
   const sortAmount = () => {};
   const sortType = () => {};
 
-  const expenses = expensesList.map(expense => {
-    return <Expense key={expense.expense_id} expense={expense} handleEdit={handleEdit} handleDelete={handleDelete} />;
-  });
+  const expenses = expensesList
+    .map(expense => {
+      return <Expense key={expense.expense_id} expense={expense} handleEdit={handleEdit} handleDelete={handleDelete} />;
+    })
+    .reverse();
   return (
     <div container="expenses">
       <table className="table-heading">
@@ -27,7 +29,7 @@ const Expenses = ({ handleEdit, userId, handleDelete }) => {
       </table>
       <div className="expenses-body">
         <table>
-          <tbody>{expenses.reverse()}</tbody>
+          <tbody>{expenses}</tbody>
         </table>
       </div>
     </div>
