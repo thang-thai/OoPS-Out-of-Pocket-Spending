@@ -24,15 +24,22 @@ const Home = () => {
   //   ...expensesList,
   // ]);
 
-  const handleEdit = (e, id) => {
+  const handleEdit = (_, id) => {
     const expense = expensesList.filter(expense => expense._id === id);
     setCurrItem([...expense]);
     setEditId(id);
     setOpenModal(true);
   };
 
-  const handleDelete = (e, id) => {
-    axios.delete(`/api/deleteExpense/${id}`);
+  const handleDelete = async (_, id) => {
+    console.log(id);
+    try {
+      const res = await axios.delete(`/api/deleteExpense/${id}`);
+      if (res) {
+        const updatedExpenses = expensesList.filter(expense => expense.expense_id != id);
+        setExpensesList([...updatedExpenses]);
+      }
+    } catch (error) {}
   };
 
   const calculateTotal = () => {
