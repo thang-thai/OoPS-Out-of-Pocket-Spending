@@ -42,11 +42,6 @@ const Home = () => {
     } catch (error) {}
   };
 
-  const calculateTotal = () => {
-    const total = expensesList.filter(expense => expense.userId === userId).reduce((acc, curr) => (acc += curr.amount), 0);
-    setTotalExpenses(total);
-  };
-
   const closeModal = () => setOpenModal(false);
 
   // Render all current expenses on load
