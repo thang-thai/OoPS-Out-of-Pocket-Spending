@@ -20,7 +20,7 @@ const Nav = () => {
       <div className="nav-logo">
         <img className="logo" src={require('../../../images/oops.png').default} />
       </div>
-      <div className="total">Total Expenses: ${expensesTotal.toLocaleString(undefined, { maximumFractionDigits: 2 })}</div>
+      <div className="total">Total Expenses: ${expensesTotal.toFixed(2)}</div>
       <button onClick={handleLogout} className="logout">
         Logout
       </button>

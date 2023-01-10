@@ -1,14 +1,16 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../../contexts/auth.context.jsx';
+import { ExpensesContext } from '../../contexts/expenses.context.jsx';
+
 import AddTransaction from '../../components/add-transaction/add-transaction.component';
 import Expenses from '../../components/expenses/expenses.component';
 import EditExpense from '../../components/edit-expense/edit-expense.component';
 import Nav from '../../components/navbar/navbar.component.jsx';
 import Overlay from '../../components/overlay/overlay.component';
+import Totals from '../../components/category-totals/totals.component.jsx';
+
 import axios from 'axios';
 import './home.styles.css';
-import { ExpensesContext } from '../../contexts/expenses.context.jsx';
-import Totals from '../../components/totals/totals.component.jsx';
 
 const Home = () => {
   // const [totalExpenses, setTotalExpenses] = useState(0);

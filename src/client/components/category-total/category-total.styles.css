@@ -1,0 +1,10 @@
+.category-total {
+  display: flex;
+  justify-content: space-between;
+  border: none;
+  background-color: #e7f8f6;
+  padding: 1rem;
+  color: #02252177;
+  border-radius: 0.4rem;
+  font-size: 1.4rem;
+}

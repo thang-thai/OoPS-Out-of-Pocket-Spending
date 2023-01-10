@@ -30,11 +30,3 @@
   flex-direction: column;
   gap: 2rem;
 }
-
-.category-total {
-  border: none;
-  background-color: #e7f8f6;
-  padding: 1rem;
-  color: #02252177;
-  border-radius: 0.4rem;
-}
