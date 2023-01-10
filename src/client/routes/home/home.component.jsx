@@ -60,8 +60,8 @@ const Home = () => {
   }, [currentUser]);
 
   return (
-    <div>
-      {openModal ? <Overlay /> : null};
+    <div className="home-container">
+      {openModal ? <Overlay /> : null}
       <Nav />
       <main className="main-container">
         <div className="edit-modal">{openModal ? <EditExpense closeModal={closeModal} editId={editId} currItem={currItem} /> : null}</div>
@@ -72,6 +72,7 @@ const Home = () => {
           <AddTransaction />
         </section>
       </main>
+      <footer className="footer">Out of Pocket Spending (OoPS)</footer>
     </div>
   );
 };

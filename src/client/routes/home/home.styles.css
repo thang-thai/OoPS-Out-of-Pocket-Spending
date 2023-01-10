@@ -1,10 +1,20 @@
+.home-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .main-container {
   display: grid;
   grid-template-columns: 1fr auto;
   justify-items: center;
   position: relative;
   max-width: 100%;
-  margin-right: 6rem;
+  column-gap: 10rem;
+  margin-top: 2rem;
+  /* max-width: 100rem; */
+  /* margin-right: 6rem; */
 }
 
 .table-heading {
@@ -17,13 +27,18 @@
 
 .expenses-body {
   overflow: auto;
-  height: 34rem;
+  height: 100rem;
 }
 
 .edit-modal {
   position: absolute;
   top: 0;
   z-index: 999;
+}
+
+.footer {
+  position: absolute;
+  bottom: 1%;
 }
 
 /* .routes {
