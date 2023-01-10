@@ -1,0 +1,40 @@
+.totals {
+  min-width: 32rem;
+  min-height: 50rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  border-radius: 0.4rem;
+  padding: 3.6rem 3.6rem;
+  background-color: #9ee3db;
+  box-shadow: 0 0.2rem 0.2rem rgb(0, 0, 0, 0.1);
+  margin-top: 1rem;
+  /* margin-right: 14rem; */
+}
+
+.totals-heading {
+  text-align: center;
+  font-size: 2rem;
+  color: #022521;
+  opacity: 0.9;
+  text-transform: uppercase;
+  font-size: 1.8rem;
+  letter-spacing: 0.15rem;
+  font-weight: 700;
+  text-shadow: rgba(231, 248, 246, 0.86) 0px 0px 29px;
+  margin-bottom: 2rem;
+}
+
+.total-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.total {
+  border: none;
+  background-color: #e7f8f6;
+  padding: 1rem;
+  color: #02252177;
+  border-radius: 0.4rem;
+}

@@ -5,9 +5,6 @@ import { ExpensesContext } from '../../contexts/expenses.context';
 
 const Expenses = ({ handleEdit, userId, handleDelete }) => {
   const { expensesList, setExpensesList } = useContext(ExpensesContext);
-  const sortDate = () => {};
-  const sortAmount = () => {};
-  const sortType = () => {};
 
   const expenses = expensesList
     .map(expense => {

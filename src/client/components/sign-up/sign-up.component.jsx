@@ -1,8 +1,8 @@
 import React, { useState, useContext } from 'react';
 import { AuthContext } from '../../contexts/auth.context';
-import { NavLink, useNavigate } from 'react-router-dom';
-import './sign-up.styles.css';
+import { Form, NavLink, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import './sign-up.styles.css';
 
 const defaultFormFields = {
   email: '',
@@ -53,7 +53,6 @@ const SignUp = () => {
       }
 
       setFormFields(defaultFormFields);
-      // setUserCreated(true);
     }
   };
 

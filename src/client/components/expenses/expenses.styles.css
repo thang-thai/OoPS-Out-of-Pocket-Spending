@@ -5,6 +5,10 @@
   font-family: sans-serif;
 }
 
+.th-sort {
+  cursor: pointer;
+}
+
 table {
   width: 100rem;
   table-layout: fixed;

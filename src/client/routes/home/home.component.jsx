@@ -8,6 +8,7 @@ import Overlay from '../../components/overlay/overlay.component';
 import axios from 'axios';
 import './home.styles.css';
 import { ExpensesContext } from '../../contexts/expenses.context.jsx';
+import Totals from '../../components/totals/totals.component.jsx';
 
 const Home = () => {
   // const [totalExpenses, setTotalExpenses] = useState(0);
@@ -68,8 +69,13 @@ const Home = () => {
         <section className="expenses">
           <Expenses handleEdit={handleEdit} handleDelete={handleDelete} />
         </section>
-        <section className="add-transaction">
-          <AddTransaction />
+        <section className="transaction-container">
+          <section className="add-transaction">
+            <AddTransaction />
+          </section>
+          <section className="totals">
+            <Totals />
+          </section>
         </section>
       </main>
       <footer className="footer">Out of Pocket Spending (OoPS)</footer>
