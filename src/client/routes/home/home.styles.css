@@ -30,6 +30,12 @@
   height: 100rem;
 }
 
+.transaction-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
 .edit-modal {
   position: absolute;
   top: 0;

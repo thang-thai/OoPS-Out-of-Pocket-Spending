@@ -4,7 +4,12 @@ import './totals.styles.css';
 
 const Totals = () => {
   const { expensesList } = useContext(ExpensesContext);
-  const categories = expensesList.map(e => e.category);
+  const categoriesAndExpenses = expensesList.map(e => [e.category, e.amount]);
+  const categories = [...new Set(expensesList.map(e => e.category))];
+  const categoryTotals = categories.map(category => {
+    const total = categoriesAndExpenses.filter(c => c[0] == category).reduce((acc, curr) => acc + Number(curr[1]), 0);
+    return [category, total];
+  });
 
   return (
     <div>
