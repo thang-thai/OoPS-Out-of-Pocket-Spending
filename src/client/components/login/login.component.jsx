@@ -47,12 +47,12 @@ const Login = () => {
     <div className="login">
       <img className="logo" src={require('../../../images/oops.png').default}></img>
       <div className="login-container">
+        {!userExists ? <p className="login-failed">Username or password incorrect. Try again!</p> : null}
         <h1 className="welcome">Welcome Back!</h1>
         <p className="sub-heading">Login to start tracking your finances</p>
         <input className="input-login" type="text" name="username" value={username} onChange={handleChange} placeholder="Username"></input>
         <input className="input-login" type="password" name="password" value={password} onChange={handleChange} placeholder="Password"></input>
         <br />
-        {!userExists ? <p className="login-failed">Username or password incorrect. Try again!</p> : null}
         <button className="login-btn" onClick={handleLogin}>
           Sign In
         </button>

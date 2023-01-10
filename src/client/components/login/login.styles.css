@@ -23,6 +23,7 @@
   padding: 4.8rem;
   border-radius: 0.4rem;
   box-shadow: 0 0.2rem 0.4rem rgb(0, 0, 0, 0.2);
+  position: relative;
 }
 
 .welcome {
@@ -87,11 +88,24 @@ button {
   font-family: 'Fredoka One', sans-serif;
   letter-spacing: 0.1rem;
 }
-
+/* 
 .login-failed {
   color: #ff6666;
   font-size: 1.3rem;
   position: absolute;
   bottom: 42%;
   left: 41.75%;
+} */
+
+.login-failed {
+  color: #ff6666;
+  position: absolute;
+  top: -8%;
+  transform: translateX(5%);
+  font-size: 1.6rem;
+  font-weight: 500;
+  border-radius: 0.4rem;
+  text-align: center;
+  min-height: 1rem;
+  min-width: 1rem;
 }

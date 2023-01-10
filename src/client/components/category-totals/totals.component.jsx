@@ -12,7 +12,7 @@ const Totals = () => {
       const total = categoriesAndExpenses.filter(c => c[0] == category).reduce((acc, curr) => acc + Number(curr[1]), 0);
       return <CategoryTotal key={`${category}${i}`} category={category} total={total} />;
     })
-    .sort((a, b) => a.props.total - b.props.total);
+    .sort((a, b) => b.props.total - a.props.total);
 
   return (
     <div>

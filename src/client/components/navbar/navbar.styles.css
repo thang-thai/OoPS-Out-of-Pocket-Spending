@@ -59,15 +59,15 @@
 .logout {
   position: absolute;
   right: 0.5%;
-  bottom: 3%;
+  bottom: 8%;
   border: none;
   background-color: transparent;
   cursor: pointer;
-  color: #0225219a;
+  color: #e7f8f6;
   transition: all 0.5s;
   outline: none;
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 1.2rem;
 }
 
 .logout:hover {
