@@ -15,9 +15,9 @@ const Totals = () => {
     <div>
       <h1 className="totals-heading">Totals </h1>
       <div className="total-container">
-        <p className="total">Category 1</p>
-        <p className="total">Category 2</p>
-        <p className="total">Category 3</p>
+        <p className="category-total">Category 1</p>
+        <p className="category-total">Category 2</p>
+        <p className="category-total">Category 3</p>
       </div>
     </div>
   );
