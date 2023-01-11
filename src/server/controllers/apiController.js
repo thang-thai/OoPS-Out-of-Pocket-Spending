@@ -1,6 +1,7 @@
 const apiController = {};
 const db = require('../models/db');
 
+// controller handles querying the sql db for all expenses of the current user and returns as JSON
 apiController.getExpenses = async (req, res, next) => {
   const { id } = req.params;
   try {
@@ -18,6 +19,7 @@ apiController.getExpenses = async (req, res, next) => {
   }
 };
 
+// controller handles inserting expenses in DB and returning the added expense in JSON
 apiController.addExpense = async (req, res, next) => {
   const { expense, amount, category, date, id } = req.body;
   try {
@@ -34,6 +36,7 @@ apiController.addExpense = async (req, res, next) => {
   }
 };
 
+// controller handles updating expense in DB and returns the updated expense in JSON
 apiController.updateExpense = async (req, res, next) => {
   const { expense, amount, category, date, editId } = req.body;
   try {
@@ -50,6 +53,7 @@ apiController.updateExpense = async (req, res, next) => {
   }
 };
 
+// Controller handles deleting expense in DB then sends it back as JSON
 apiController.deleteExpense = async (req, res, next) => {
   const { id } = req.params;
   try {

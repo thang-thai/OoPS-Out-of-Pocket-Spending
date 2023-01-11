@@ -3,6 +3,7 @@ import { ExpensesContext } from '../../contexts/expenses.context';
 import axios from 'axios';
 import './edit-expense.styles.css';
 
+// Default form state
 const defaultFormFields = {
   expense: '',
   amount: '',
@@ -15,15 +16,18 @@ const EditExpense = ({ closeModal, editId }) => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { expense, amount, category, date } = formFields;
 
+  // Handler for updating form fields
   const handleChange = e => {
     const { name, value } = e.target;
     setFormFields({ ...formFields, [name]: value });
   };
 
+  // Resets all form fields
   const handleClear = () => {
     setFormFields(defaultFormFields);
   };
 
+  //  Updates expense in DB
   const handleSubmit = async e => {
     e.preventDefault();
     const res = await axios.put(`/api/updateExpense/`, { expense, amount, category, date, editId });

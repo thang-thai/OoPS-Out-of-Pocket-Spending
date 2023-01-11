@@ -1,5 +1,4 @@
 const express = require('express');
-const mongoose = require('mongoose');
 const cors = require('cors');
 const path = require('path');
 const bodyParser = require('body-parser');
@@ -10,31 +9,12 @@ const cookieParser = require('cookie-parser');
 // require Routers
 const apiRouter = require('./routes/apiRouter');
 const authRouter = require('./routes/authRouter');
-// const signupRouter = require('./routes/signup');
-
-// require Controllers
-const cookieController = require('./controllers/cookieController');
-
-// // require Models
-// const TransactionModel = require('./models/transactionModel');
-// const UserModel = require('./models/userModel');
-
-// // Connect to DB
-// mongoose.connect(
-//   'mongodb+srv://thangthai:marty123@soloproject.93j556t.mongodb.net/?retryWrites=true&w=majority',
-//   { useNewUrlParser: true, useUnifiedTopology: true }
-// );
-
-mongoose.connection.once('open', () => {
-  console.log('Connected to Database');
-});
 
 // Server set up
 app.use(express.json());
 app.use(cors());
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
-
 app.use(express.static(path.resolve(__dirname, '../../dist')));
 
 // Routes
@@ -42,8 +22,7 @@ app.use('/api', apiRouter);
 app.use('/auth', authRouter);
 
 // Route for main app
-app.get('/', cookieController.setCookie, (req, res) => {
-  console.log(res.cookie);
+app.get('/', (req, res) => {
   return res.status(200).sendFile(path.resolve(__dirname, '../../dist/bundle'));
 });
 

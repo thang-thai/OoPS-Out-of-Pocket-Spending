@@ -2,7 +2,7 @@ const express = require('express');
 const apiController = require('../controllers/apiController');
 const router = express.Router();
 
-// Add transaction route
+// Routes for getting, adding, updating, and deleting expenses
 router.post('/getExpenses/:id', apiController.getExpenses, (req, res) => {
   return res.status(200).json(res.locals.expenses);
 });

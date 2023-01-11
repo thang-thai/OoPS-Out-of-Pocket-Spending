@@ -4,28 +4,32 @@ import { useNavigate, NavLink } from 'react-router-dom';
 import axios from 'axios';
 import './login.styles.css';
 
+// Default state for login form fields
 const defaultFormFields = {
   username: '',
   password: '',
 };
 
 const Login = () => {
-  const { currentUser, setCurrentUser } = useContext(AuthContext);
+  const { setCurrentUser } = useContext(AuthContext);
   const [userExists, setUserExists] = useState(true);
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { username, password } = formFields;
 
+  // Redirects to home route after successful login
   let navigate = useNavigate();
   const homeRoute = () => {
     let path = '/home';
     navigate(path);
   };
 
+  // Handler to update form fields
   const handleChange = e => {
     const { name, value } = e.target;
     setFormFields({ ...formFields, [name]: value });
   };
 
+  //  Handler to verify user upon login - error message appears if login failed
   const handleLogin = async () => {
     try {
       const res = await axios.post('/auth/verifyUser', { username, password });
@@ -38,8 +42,7 @@ const Login = () => {
       }
       setFormFields(defaultFormFields);
     } catch (error) {
-      // add better error handling
-      console.log(error);
+      setUserExists(false);
     }
   };
 

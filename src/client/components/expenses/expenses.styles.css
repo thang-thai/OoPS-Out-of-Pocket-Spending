@@ -26,7 +26,10 @@ td.cell {
   font-size: 1.3rem;
   background-color: #cef1ed;
   border-radius: 0.4rem;
-  padding: 0.4rem;
+  padding: 0.8rem;
+  letter-spacing: 0.1rem;
+  font-family: 'Fredoka One', sans-serif;
+  color: #022521e4;
 }
 
 .btns {

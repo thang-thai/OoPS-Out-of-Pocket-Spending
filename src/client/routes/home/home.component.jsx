@@ -13,20 +13,13 @@ import axios from 'axios';
 import './home.styles.css';
 
 const Home = () => {
-  // const [totalExpenses, setTotalExpenses] = useState(0);
-  // const [expensesList, setExpensesList] = useState([]);
-  // const { id, firstName, lastName } = currentUser;
   const [editId, setEditId] = useState('');
   const [currItem, setCurrItem] = useState([]);
   const [openModal, setOpenModal] = useState(false);
-  const { currentUser, setCurrentUser } = useContext(AuthContext);
+  const { currentUser } = useContext(AuthContext);
   const { expensesList, setExpensesList } = useContext(ExpensesContext);
-  // const { id, firstName, lastName } = currentUser;
 
-  // const [sortedTransactions, setSortedTransactions] = useState([
-  //   ...expensesList,
-  // ]);
-
+  // Handler for editing an expense
   const handleEdit = (_, id) => {
     const expense = expensesList.filter(expense => expense._id === id);
     setCurrItem([...expense]);
@@ -34,6 +27,7 @@ const Home = () => {
     setOpenModal(true);
   };
 
+  // Handler for deleting an expense
   const handleDelete = async (_, id) => {
     try {
       const res = await axios.delete(`/api/deleteExpense/${id}`);
@@ -44,14 +38,14 @@ const Home = () => {
     } catch (error) {}
   };
 
+  // Opens modal for editing an expense
   const closeModal = () => setOpenModal(false);
 
-  // Render all current expenses on load
+  // Render all current expenses on load if any exists for user
   useEffect(() => {
     const getExpenses = async () => {
       try {
         if (currentUser) {
-          console.log(currentUser, currentUser.id);
           const res = await axios.post(`/api/getExpenses/${currentUser.id}`);
           setExpensesList(res.data);
         }

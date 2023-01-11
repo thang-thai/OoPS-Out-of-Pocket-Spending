@@ -5,6 +5,8 @@ import '../category-totals/totals.styles.css';
 
 const Totals = () => {
   const { expensesList } = useContext(ExpensesContext);
+
+  // Transforms expenses data into sorted totals in decreasing order
   const categoriesAndExpenses = expensesList.map(e => [e.category, e.amount]);
   const categories = [...new Set(expensesList.map(e => e.category))];
   const categoryTotals = categories

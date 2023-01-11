@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { AuthContext } from '../../contexts/auth.context';
-import { Form, NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './sign-up.styles.css';
 
@@ -20,23 +20,26 @@ const SignUp = () => {
 
   const { email, firstName, lastName, username, password, confirmedPassword } = formFields;
 
+  // Redirects to home page upon sign up and logs user in
   const navigate = useNavigate();
   const homeRoute = () => {
     const path = '/home';
     navigate(path);
   };
 
+  // Navigates to home page when logo is clicked
   const landingRoute = () => {
     const path = '/';
     navigate(path);
   };
 
+  // Handler for updating form fields
   const handleChange = e => {
     const { name, value } = e.target;
     setFormFields({ ...formFields, [name]: value });
   };
 
-  // confirm that user is created then sign them in to home
+  // Verifies if user exists in DB first. Then, if user doens't exist, adds into DB and redirects to their home page
   const handleSubmit = async e => {
     e.preventDefault();
     if (password !== confirmedPassword) {
@@ -48,8 +51,9 @@ const SignUp = () => {
     if ((email, firstName, lastName, username)) {
       const res = await axios.post('/auth/addUser', { email, firstName, lastName, username, password });
       if (res) {
-        const { user_id: id, first_name: firstName, last_name: lastName } = res;
+        const { user_id: id, first_name: firstName, last_name: lastName } = res.data;
         setCurrentUser({ id, firstName, lastName });
+        homeRoute();
       }
 
       setFormFields(defaultFormFields);

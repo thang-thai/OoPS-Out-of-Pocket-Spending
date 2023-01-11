@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React, { useRef } from 'react';
 import './expense.styles.css';
 
@@ -6,6 +5,7 @@ const Expense = ({ expense, handleEdit, handleDelete }) => {
   const { expense_id, expense_name, date, category, amount } = expense;
   const inputRef = useRef(null);
 
+  // Sends expense ID to handler using ref
   const handleUpdate = (e, id) => {
     handleEdit(e, id);
   };

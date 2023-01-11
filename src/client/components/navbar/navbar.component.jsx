@@ -8,8 +8,8 @@ const Nav = () => {
   const { setCurrentUser } = useContext(AuthContext);
   const { expensesTotal } = useContext(ExpensesContext);
 
+  // Redirects to home page upon log out
   const navigate = useNavigate();
-
   const handleLogout = () => {
     setCurrentUser(null);
     navigate('/');

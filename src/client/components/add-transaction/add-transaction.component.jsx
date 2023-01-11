@@ -4,6 +4,7 @@ import { ExpensesContext } from '../../contexts/expenses.context';
 import { AuthContext } from '../../contexts/auth.context';
 import './add-transaction.styles.css';
 
+// Default state of form fields
 const defaultFormFields = {
   expense: '',
   amount: '',
@@ -17,11 +18,13 @@ const AddTransaction = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { expense, amount, category, date } = formFields;
 
+  // Handler to update form fields
   const handleChange = e => {
     const { name, value } = e.target;
     setFormFields({ ...formFields, [name]: value });
   };
 
+  // Submits transaction to DB
   const handleSubmit = async e => {
     e.preventDefault();
     const res = await axios.post('/api/addExpense', { expense, amount, category, date, id: currentUser.id });
