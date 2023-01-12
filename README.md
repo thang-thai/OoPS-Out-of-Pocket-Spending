@@ -2,7 +2,7 @@
 
 OoPS is a Personal Finance and Expense Tracking Application.
 
-**_Note: This application only works with PG_URI value set in `.env` file. ReinForce is built to interact with any empty postgreSQL database._**
+**_Note: This application only works with PG_URI value set in `.env` file. OoPS is built to interact with any empty postgreSQL database._**
 
 ## Installation
 
