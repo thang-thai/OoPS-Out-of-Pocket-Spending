@@ -22,9 +22,9 @@ npm run dev
 ```
 
 <div align="center">
-    <img src="./public/Homepage.png" alt="homepage image" width="100%"/>
-    <img src="./public/Login.png" alt="login image" width="100%"/>
-    <img src="./public/Signup.png" alt="signup image" width="100%"/>
+    <img src="./public/Homepage.png" alt="homepage image" width="50%"/>
+    <img src="./public/Login.png" alt="login image" width="50%"/>
+    <img src="./public/Signup.png" alt="signup image" width="50%"/>
 </div>
 
 ## Contributing
